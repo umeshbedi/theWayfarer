@@ -1,0 +1,25 @@
+$primary-color: #ff3938;
+$light-blue: #ffe3e3;
+
+#actMenuHeader{
+    background: $light-blue;
+}
+
+#actMenuContainer:hover{
+    background-color: $light-blue;
+    border-radius: 10px 50px 10px 10px;
+    #actMenuHeader{
+        background: $primary-color;
+        color: white;
+    }
+
+}
+#actMenuContainer>ul{
+    margin: 10px 0;
+}
+
+#actMenuContainer>ul>li:hover{
+    background-color: white;
+    border-radius: 50px 0 0 50px;
+}
+

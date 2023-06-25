@@ -1,0 +1,47 @@
+$primary-color: #ff3938;
+$secondary-color:#25527b;
+$lightGrey:#f1f1f1;
+
+.container{
+  height: 200px;
+  
+  // for mobile
+  @media (max-width:480px) {
+    background-color: red;
+  }
+
+  //for tablet
+  @media (min-width:480px) {
+    background-color: green;  
+  }
+
+  //for desktop or laptop
+  @media (min-width:993px) {
+    background-color: blue;  
+  }
+}
+
+:export {
+  primaryColor: $primary-color;
+  secondaryColor:$secondary-color;
+  lightGrey:$lightGrey;
+}
+
+.AdminLogin{
+    background-color: #f7f7f7;
+    height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  .gutter-row {
+    padding: 8px 0;
+    background: #feffff;
+  }
+  
+  
+
+
+
