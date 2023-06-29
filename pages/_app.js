@@ -1,9 +1,13 @@
 import '@/styles/globals.scss'
 
-import { ConfigProvider, Layout } from 'antd'
+import { ConfigProvider, Layout, Skeleton } from 'antd'
 import Head from 'next/head'
 import { Red_Hat_Display } from 'next/font/google'
-import Header from '@/components/Header'
+// import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import dynamic from 'next/dynamic'
+import SHeader from '@/components/skeleton/SHeader'
+const Header = dynamic(import("@/components/Header"),{ssr: false, loading: () =><SHeader/> })
 
 const redHat = Red_Hat_Display({
   weight: ['400', '500', '600', '700', '900'],
@@ -16,13 +20,13 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: '#ff0000',
-          borderRadius: 50,
+        theme={{
+          token: {
+            colorPrimary: '#ff0000',
+            borderRadius: 50,
 
-        }
-      }}
+          }
+        }}
       >
         <Layout>
           <Head>
@@ -30,11 +34,13 @@ export default function App({ Component, pageProps }) {
             <link rel="icon" href="/theWayfarer logo_Round.png" />
           </Head>
           <main className={redHat.className}>
-          <div style={{ position: 'sticky', top: 0, zIndex: 5 }}>
-            <Header />
-          </div>
-          
+            <div style={{ position: 'sticky', top: 0, zIndex: 5 }}>
+              <Header />
+            </div>
+
             <Component {...pageProps} />
+
+            <Footer />
           </main>
         </Layout>
       </ConfigProvider>

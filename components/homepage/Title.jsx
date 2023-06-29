@@ -21,9 +21,7 @@ export default function Title({ red, blue, isdark = false, extra }) {
             >
             <div>
             <h1 style={{ padding: isMobile?'0 5%':0, marginBottom: 10, fontWeight: 700, fontSize: "3.2rem"}}>
-                <span style={{ color: style.primaryColor }}>{red}</span>
-                {" "}
-                <span style={{ color: isdark ? "white" : "grey" }}>{blue}</span>
+                <span style={{ color: style.primaryColor }}>{red}</span><span style={{ color: isdark ? "white" : "grey" }}>{blue}</span>
             </h1>
             </div>
             {extra}

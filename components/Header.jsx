@@ -105,11 +105,11 @@ export default function Header({ }) {
               <div style={{ height: 50, position: 'relative', width: 50, marginLeft: 10 }}>
                 <Image src={item.icon} fill style={{ objectFit: 'fill' }} />
               </div>
-              <p>{item.name}</p>
+              <p style={{textTransform:'uppercase'}}>{item.name}</p>
             </div>
             <ul style={{ marginLeft: 10 }}>
               {item.items.map((li, index) => (
-                <li key={index}>
+                <li key={index} style={{textTransform:'uppercase'}}>
                   <span style={{ display: 'flex', fontWeight: '600', gap: 10, alignItems: 'center', padding: 5, borderRadius: 10 }}>
                       <div style={{ height: 30, position: 'relative', width: 30 }}>
                         <Image src={li.icon} fill style={{ objectFit: 'fill', borderRadius: 50 }} />
@@ -140,7 +140,9 @@ export default function Header({ }) {
           borderBottom: 0,
           backgroundColor: style.primaryColor,
           color: 'white',
-          transition: 'none !important'
+          transition: 'none !important',
+          textTransform:'uppercase',
+          
         }}
         disabledOverflow
         onClick={(e) => { setActive(e.key); setOpen(false) }}
@@ -154,7 +156,7 @@ export default function Header({ }) {
         <Menu.SubMenu title={<p >Know{isMobile ? null : <FaAngleDown />}</p>}>
           {menu.know.map((item, index) => (
             <Menu.Item key={item.name}>
-              <Link target='blank' href={item.slug}>{item.name}</Link>
+              <Link style={{textTransform:'uppercase'}} target='blank' href={item.slug}>{item.name}</Link>
             </Menu.Item>
           ))
           }
@@ -165,7 +167,8 @@ export default function Header({ }) {
           {
             menu.hotels.map((name, key) => (
               <Menu.Item key={name.name + key}>
-                <Link target='blank' href={name.slug}>{name.name}</Link>
+                <Link target='blank' style={{textTransform:'uppercase'}} 
+                href={`/search?location=Andaman and Nicobar Islands&category=${name.name}`}>{name.name}</Link>
               </Menu.Item>
             ))
           }
@@ -176,7 +179,7 @@ export default function Header({ }) {
           {
             menu.rentals.map((name, key) => (
               <Menu.Item key={name.name + key}>
-                <Link target='blank' href={name.slug}>{name.name}</Link>
+                <Link style={{textTransform:'uppercase'}} target='blank' href={name.slug}>{name.name}</Link>
               </Menu.Item>
             ))
           }

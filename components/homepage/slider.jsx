@@ -10,13 +10,42 @@ import style from '@/styles/Home.module.scss'
 export default function Slider({ banner }) {
     const [isMobile, setIsMobile] = useState(false)
 
+    const [addStyle, setAddStyle] = useState({})
+
     useEffect(() => {
         setIsMobile(mobile())
     }, [isMobile])
 
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            const scrollPercent = (window.scrollY * 100) / 600
+            if (scrollPercent != undefined) {
+                setAddStyle({
+                    transform: `scale(${100 - scrollPercent}%, ${100 - scrollPercent}%)`,
+                    opacity: `${100 - scrollPercent}%`,
+                    top: scrollPercent * 3.5,
+                    
+                })
+            }
+        })
+    }, [])
+
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-            <div style={{ transform: "rotate(180deg)", position: 'absolute', zIndex: 2, width: '100%', }}>
+        <div
+            id='waveslider'
+            style={{
+                ...addStyle,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                position: 'relative',
+                transition: "all .3s",
+                
+            }}
+        >
+
+            <div 
+            style={{ transform: "rotate(180deg)", position: 'absolute', zIndex: 2, width: '100%', }}>
                 <Wave />
             </div>
             <Carousel
@@ -56,10 +85,10 @@ export default function Slider({ banner }) {
                                 <Row style={{ width: '95%', position: 'absolute', padding: "10%" }}>
                                     <Col span={isMobile ? 16 : 24} style={{}}>
 
-                                        <h1 style={{ color: 'white', fontSize:"5.25em", fontWeight:900 }}>{item.heading}</h1>
+                                        <h1 style={{ color: 'white', fontSize: "5.25em", fontWeight: 900 }}>{item.heading}</h1>
                                         <Space direction='vertical' style={{ gap: 20 }}>
-                                            <p style={{ color: 'white', fontSize:"2.5em", fontWeight:600, fontStyle:'italic' }}>{item.subHeading}</p>
-                                            <Link target='blank' style={{background:style.primaryColor, padding:"10px 20px", borderRadius:50, color:'white', fontWeight:700}} href={"/contact-us"}>Contact Us</Link>
+                                            <p style={{ color: 'white', fontSize: "2.5em", fontWeight: 600, fontStyle: 'italic' }}>{item.subHeading}</p>
+                                            <Link target='blank' style={{ background: style.primaryColor, padding: "10px 20px", borderRadius: 50, color: 'white', fontWeight: 700 }} href={"/contact-us"}>Contact Us</Link>
                                         </Space>
                                     </Col>
                                 </Row>

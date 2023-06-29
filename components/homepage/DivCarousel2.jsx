@@ -36,9 +36,9 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
         <div
             ref={containerRef}
             style={{
-                ...containerStyle,
+                // ...containerStyle,
                 // backgroundColor: 'grey',
-                float: 'right',
+                // float: 'right',
                 // height:400,
                 // background:'red'
                 // marginLeft: 100,
@@ -46,8 +46,8 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
                 marginBottom: "3.5rem"
             }}
         >
-            <div style={{...titleStyle}}>
-                <Title red={"Sustainability"}/>
+            <div style={{marginLeft:"4.5rem"}}>
+                <Title red={"Sustain"} blue={"ability"}/>
             </div>
             <div
                 style={{ width: '100%', position: 'relative' }}
@@ -56,47 +56,48 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
                 {/* for carousel */}
                 <div
                     style={sliderStyle}
-
+                    id='hompagebigslider'
                 >
                     <Swiper
-                        style={{ "--swiper-navigation-color": "#fff"}}
+                        style={{ "--swiper-navigation-color": "#fff", paddingRight:"30%"}}
                         ref={slideRef}
-                        effect={"coverflow"}
+                        // effect={"coverflow"}
                         grabCursor={true}
                         navigation={true}
                         modules={[Pagination, Navigation]}
                         // centeredSlides={center}
-                        slidesPerView={"auto"}
+                        slidesPerView={3}
                         spaceBetween={30}
-                        // loop={true}
+                        loop={true}
+                        onSlidesLengthChange={(e)=>{console.log(e)}}
                         onSlideChange={(e) => {
                             setActiveIndex(e.activeIndex)
-                            console.log(e)
+                            // console.log(e)
                             if (e.activeIndex > 0) {
                                 setContainerStyle({ width: '100%'})
-                                setTitleStyle({marginLeft:"4.5rem"})
+                                
                             } else {
                                 setContainerStyle({ width: '90%'})
-                                setTitleStyle({})
+                                
                             }
                         }}
                     >
                         {sliderImages.map((item, index) => (
-                            <SwiperSlide style={{ width: 600, height: 460, transition:"width .5s",  }} key={index}>
+                            <SwiperSlide style={{ width: "30%", height: 460, transition:"width .5s",  }} key={index}>
                                 <div style={{ height: 460 }}>
                                     <Image src={item.thumbnail} alt={item.name} fill style={{ objectFit: 'cover', borderRadius: 50, position: 'absolute', zIndex: -1 }} />
                                     <div style={{position:'absolute',bottom:0, background:"linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)", width:'100%', borderRadius:"0 0 50px 50px", padding:40}}>
                                     <h1 style={{
                                         color: 'white',
                                         fontWeight: 700,
-                                        fontSize: "2.5rem",
+                                        fontSize: "2rem",
                                         // background:'yellow',
                                         marginBottom:10
                                     }}
                                     >
                                         Outdoor Nature
                                     </h1>
-                                    <p style={{fontWeight:400, fontSize:"1.2rem", color:'white'}}>Become an Explorer of Magninficant nature</p>
+                                    <p className='paragraph' style={{fontWeight:400, fontSize:"1.2rem", color:'white', display:'none'}}>Become an Explorer of Magninficant nature</p>
                                     </div>
                                 </div>
                             </SwiperSlide>

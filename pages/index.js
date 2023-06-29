@@ -20,6 +20,8 @@ export default function Home({
   islandData,
   testimonials
 }) {
+
+
   return (
     <>
       <Head>
@@ -53,10 +55,7 @@ export default function Home({
           />
     
           <DivCarousel2
-          lightHead={"This is something om"} 
-          darkHead={"hotels"} 
           button={{name:"All Hotels", slug:"/destination"}}
-          backgroundImage={'/divcarousel/bg-3.jpg'}
           />
 
           <Package

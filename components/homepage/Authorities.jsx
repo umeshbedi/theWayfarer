@@ -40,18 +40,17 @@ export default function Authorities() {
         }}
         >
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Title red={"Accredited"} blue={"By"} />
+                <Title red={"Accredited"} blue={" By"} />
             </div>
 
 
             <div style={{
-                display: isMobile ? "flex" : 'grid',
-                flexDirection: 'column',
-                alignItems: 'center',
+                display: "flex",
                 gridGap: 30,
-                gridTemplateColumns: "repeat(4, auto)",
                 padding: '0 0 2% 0',
-                marginTop: isMobile ? '5%' : null
+                marginTop: isMobile ? '5%' : null,
+                flexWrap:'wrap',
+                justifyContent:'center'
             }}
             >
 
@@ -94,7 +93,7 @@ export default function Authorities() {
             }}
             >
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Title red={"Awesome"} blue={"Service"} />
+                    <Title red={"Awesome"} blue={" Service"} />
                 </div>
 
                 <div style={{

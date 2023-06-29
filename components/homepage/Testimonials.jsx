@@ -31,7 +31,7 @@ export default function Testimonials({ testimonialsData }) {
             <div style={{display:'flex', justifyContent:'center'}}>
             <Title 
             red={"Google Reviews for"} 
-            blue={"The WayFerer"} isdark 
+            blue={" The WayFerer"} isdark 
             extra={
                 <div>
                     <p style={{textAlign:'center', color:'white', padding:"0 10px"}}>You can review us for our services ➡ <span>
