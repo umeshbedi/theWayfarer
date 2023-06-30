@@ -9,6 +9,11 @@ import dynamic from 'next/dynamic'
 import SHeader from '@/components/skeleton/SHeader'
 const Header = dynamic(import("@/components/Header"),{ssr: false, loading: () =><SHeader/> })
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react'
+
+
 const redHat = Red_Hat_Display({
   weight: ['400', '500', '600', '700', '900'],
   style: ['normal', 'italic'],
@@ -17,6 +22,11 @@ const redHat = Red_Hat_Display({
 })
 
 export default function App({ Component, pageProps }) {
+
+  useEffect(()=>{
+    AOS.init();
+  },[])
+
   return (
     <>
       <ConfigProvider

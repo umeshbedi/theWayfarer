@@ -25,9 +25,7 @@ export default function Search({cruizeData, activityData}) {
   }, [isMobile])
 
   useEffect(()=>{
-    setTimeout(() => {
-      setSize(100)
-    }, 1000);
+    setSize(100)
   },[size])
 
   return (
@@ -52,9 +50,9 @@ export default function Search({cruizeData, activityData}) {
         >
           <Row style={{ width: '95%' }}>
             <Col span={isMobile ? 18 : 10} style={{}}>
-              <h1 style={{ fontSize: isMobile ? 35 : 45, color: 'white' }}>Hotels in {query.location}</h1>
+              <h1 style={{ fontSize: isMobile ? 35 : 45, color: 'white', fontWeight:800 }}>Hotels in {query.location}</h1>
               <br />
-              <p style={{ color: 'white' }}>Find {query.category} Hotels/Resorts in {query.location} with Best Experience</p>
+              <p style={{ color: 'white', fontSize:"1.2rem" }}>Find {query.category} Hotels/Resorts in {query.location} with Best Experience</p>
             </Col>
           </Row>
 

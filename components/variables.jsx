@@ -24,7 +24,7 @@ export const ferry = [
   "Sea Link",
   "Aashi",
   "Itt Majestic"
-  ]
+]
 
 export function mobile() {
   if (typeof window !== "undefined") {
@@ -42,19 +42,19 @@ export const images = [
   {
     image: 'https://i.imgur.com/AlXXVja.jpg',
     heading: 'Luxury Cruize',
-    subHeading:'Yougest fastes and safest'
+    subHeading: 'Yougest fastes and safest'
 
   },
   {
     image: 'https://i.imgur.com/AlXXVja.jpg',
     heading: 'Luxury Cruize',
-    subHeading:'Yougest fastes and safest'
+    subHeading: 'Yougest fastes and safest'
 
   },
   {
     image: 'https://i.imgur.com/AlXXVja.jpg',
     heading: 'Luxury Cruize',
-    subHeading:'Yougest fastes and safest'
+    subHeading: 'Yougest fastes and safest'
 
   },
 ];
@@ -79,11 +79,15 @@ export function ImageFooter({ text, onPress }) {
   )
 }
 
-export const boxShadow = '0 0 30px 0 rgba(0, 0, 0, 0.3)'
+export const boxShadow = '0 0 30px 0 rgba(0, 0, 0, 0.15)'
 
 export function MinusPlus({ text, number, pluOnPress, minusOnPress, subText }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div
+      data-aos="fade-down"
+      data-aos-anchor-placement="top-bottom"
+      data-aos-duration="2000"
+      style={{ display: 'flex', alignItems: 'center' }}>
       <div>
         <p>{text}</p>
         <p style={{ fontSize: 14 }}>{subText}</p>
@@ -187,8 +191,8 @@ class="transition duration-300 ease-in-out delay-150">
     document.getElementById("waves").innerHTML = waves
   }, [])
   return (
-    <div id='waves'/>
-    )
+    <div id='waves' />
+  )
 }
 
 
@@ -215,25 +219,25 @@ export const activity = [
 
 
 export const IncludesIconName = [
-  {name:"Breakfast", icon:"/icons/bREAKFAST.png"},
-  {name:"Best Price", icon:"/icons/BEST PRICE.png"},
-  {name:"Best Seller-2", icon:"/icons/BEST SELLER (2).png"},
-  {name:"Best Seller", icon:"/icons/BEST SELLER.png"},
-  {name:"Cab", icon:"/icons/CAB.png"},
-  {name:"Candle Light Dinner", icon:"/icons/CANDLE LIGHT DINNER.png"},
-  {name:"Co-ordinator", icon:"/icons/CORDINATOR.png"},
-  {name:"Customer Happiness", icon:"/icons/CUSTOMER HAPPINESS.png"},
-  {name:"Ferry", icon:"/icons/FERRY.png"},
-  {name:"Hotel", icon:"/icons/HOTEL.png"},
-  {name:"Jetski", icon:"/icons/JETSKI.png"},
-  {name:"Local Expertys", icon:"/icons/LOCAL EXPERTYS.png"},
-  {name:"No Hidden cost", icon:"/icons/NO HIDDEN COST.png"},
-  {name:"ParaSailing", icon:"/icons/PARASAILING.png"},
-  {name:"Scuba", icon:"/icons/SCUBA.png"},
-  {name:"Sea Walk", icon:"/icons/SEA WALK dIVING.png"},
-  {name:"Sight Seeing", icon:"/icons/SIGHTSEEING.png"},
-  {name:"SnorKelling", icon:"/icons/SNORKELLING.png"},
-  {name:"Tailor Made Packages", icon:"/icons/TAILOR MADE PACKAGES.png"},
-  {name:"Water Sports", icon:"/icons/WATER SPORTS.png"}
-  
+  { name: "Breakfast", icon: "/icons/bREAKFAST.png" },
+  { name: "Best Price", icon: "/icons/BEST PRICE.png" },
+  { name: "Best Seller-2", icon: "/icons/BEST SELLER (2).png" },
+  { name: "Best Seller", icon: "/icons/BEST SELLER.png" },
+  { name: "Cab", icon: "/icons/CAB.png" },
+  { name: "Candle Light Dinner", icon: "/icons/CANDLE LIGHT DINNER.png" },
+  { name: "Co-ordinator", icon: "/icons/CORDINATOR.png" },
+  { name: "Customer Happiness", icon: "/icons/CUSTOMER HAPPINESS.png" },
+  { name: "Ferry", icon: "/icons/FERRY.png" },
+  { name: "Hotel", icon: "/icons/HOTEL.png" },
+  { name: "Jetski", icon: "/icons/JETSKI.png" },
+  { name: "Local Expertys", icon: "/icons/LOCAL EXPERTYS.png" },
+  { name: "No Hidden cost", icon: "/icons/NO HIDDEN COST.png" },
+  { name: "ParaSailing", icon: "/icons/PARASAILING.png" },
+  { name: "Scuba", icon: "/icons/SCUBA.png" },
+  { name: "Sea Walk", icon: "/icons/SEA WALK dIVING.png" },
+  { name: "Sight Seeing", icon: "/icons/SIGHTSEEING.png" },
+  { name: "SnorKelling", icon: "/icons/SNORKELLING.png" },
+  { name: "Tailor Made Packages", icon: "/icons/TAILOR MADE PACKAGES.png" },
+  { name: "Water Sports", icon: "/icons/WATER SPORTS.png" }
+
 ]

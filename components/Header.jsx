@@ -140,7 +140,6 @@ export default function Header({ }) {
           borderBottom: 0,
           backgroundColor: style.primaryColor,
           color: 'white',
-          transition: 'none !important',
           textTransform:'uppercase',
           
         }}

@@ -5,6 +5,7 @@ import style from '@/styles/Home.module.scss';
 import { Button, Rate } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 
 export default function SingleHotel({ hotelData }) {
@@ -27,7 +28,11 @@ export default function SingleHotel({ hotelData }) {
         // }, 1000)
     }, [])
     return (
-        <div >
+        <div
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-bottom"
+            data-aos-duration="2000"
+        >
             <div
                 style={{
                     backgroundColor: 'white',
@@ -35,25 +40,31 @@ export default function SingleHotel({ hotelData }) {
                     borderRadius: 30,
                     boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.07)',
                     display: isMobile ? 'block' : 'flex',
-                    
+
                 }}
             >
 
                 {/* Image container */}
-                <div style={{ width: isMobile ? '100%' : '40%' }}>
+                <div style={{ width: isMobile ? '100%' : '50%' }}>
                     <div
                         style={{
                             position: 'absolute',
                             backgroundColor: style.primaryColor,
                             zIndex: 1,
-                            padding: 5,
+                            padding: "5px 20px",
                             color: 'white',
+                            borderTopLeftRadius:30,
+                            borderBottomRightRadius:30
                         }}
                     >
                         <p>
                             {/* {(100 - ((hotel.primary_price * 100) / hotel.primary_price_offer)).toFixed(0)} */}
                             20% Off
                         </p>
+                    </div>
+                    
+                    <div style={{width:"100%", height:"100%", position:'relative'}}>
+                        <Image src={"/images/samplehotel.jpg"} fill style={{objectFit:"cover", borderRadius:30}}/>
                     </div>
                     {/* <ImageGallery 
                         items={images.length==0 ?
@@ -77,7 +88,7 @@ export default function SingleHotel({ hotelData }) {
                     <p>{"Dedeman Hotels & Resorts International 50 yılı aşkın kazandığı deneyimini dünyanın her yerinden ağırladığı misafirleriyle paylaşmaya devam ediyor."}...(<Link target='blank' style={{ color: style.primaryColor }} href={"#"}>more</Link>)</p>
                     <h1><span style={{ fontSize: 16, textDecoration: 'line-through', marginRight: 5 }}>₹10000</span>₹8000/<span style={{ fontSize: 16 }}>per night</span></h1>
                     <div>
-                        <Button type='primary' style={{borderRadius:50}} size='large' onClick={() => window.open("#", "_blank")} >Book Hotel</Button>
+                        <Button type='primary' style={{ borderRadius: 50 }} size='large' onClick={() => window.open("#", "_blank")} >Book Hotel</Button>
                     </div>
                 </div>
             </div>

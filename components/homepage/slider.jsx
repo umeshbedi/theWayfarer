@@ -12,6 +12,8 @@ export default function Slider({ banner }) {
 
     const [addStyle, setAddStyle] = useState({})
 
+    const [corner, setCorner] = useState({})
+
     useEffect(() => {
         setIsMobile(mobile())
     }, [isMobile])
@@ -19,6 +21,8 @@ export default function Slider({ banner }) {
     useEffect(() => {
         window.addEventListener("scroll", () => {
             const scrollPercent = (window.scrollY * 100) / 600
+            const radius = scrollPercent*4
+
             if (scrollPercent != undefined) {
                 setAddStyle({
                     transform: `scale(${100 - scrollPercent}%, ${100 - scrollPercent}%)`,
@@ -26,6 +30,8 @@ export default function Slider({ banner }) {
                     top: scrollPercent * 3.5,
                     
                 })
+
+                setCorner({borderRadius:`${radius}px ${radius}px 0 0`})
             }
         })
     }, [])
@@ -69,7 +75,7 @@ export default function Slider({ banner }) {
                                     src={item.image}
                                     fill
                                     loading='lazy'
-                                    style={{ objectFit: 'cover' }}
+                                    style={{ objectFit: 'cover', ...corner }}
                                 />
                                 <div style={{
                                     height: isMobile ? 300 : 550,
@@ -79,7 +85,8 @@ export default function Slider({ banner }) {
                                                 ), 
                                                 url('')`,
                                     position: 'absolute',
-                                    width: '100%'
+                                    width: '100%',
+                                    ...corner
                                 }}
                                 />
                                 <Row style={{ width: '95%', position: 'absolute', padding: "10%" }}>

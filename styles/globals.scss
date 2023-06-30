@@ -27,7 +27,7 @@
 
 body {
   max-width: 100vw;
-  background-color: rgb(241, 241, 241);
+  background-color: #f1f1f1;
 
 
   a {
@@ -125,10 +125,13 @@ a {
 }
 
 #menuDiv{
+
+  transition: color .5s;
+
   p{
     font-size: 14px;
     font-weight: bold;
-    
+    transition: color .5s;
   }
   
   a:hover{

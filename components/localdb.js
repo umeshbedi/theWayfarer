@@ -24,15 +24,15 @@ export const menu = {
     "rentals": [
         {
             "name": "Cab in Port Blair",
-            "slug": "/Cab-in-Port-Blair"
+            "slug": "/cabs/Cab-in-Port-Blair"
         },
         {
             "name": "Cab in Havlock Island",
-            "slug": "/Cab-in-Havlock-Island"
+            "slug": "/cabs/Cab-in-Havlock-Island"
         },
         {
             "name": "Cab in Neil Island",
-            "slug": "/Cab-in-Neil-Island"
+            "slug": "/cabs/Cab-in-Neil-Island"
         }
     ],
 
