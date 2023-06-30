@@ -7,11 +7,12 @@ import { Red_Hat_Display } from 'next/font/google'
 import Footer from '@/components/Footer'
 import dynamic from 'next/dynamic'
 import SHeader from '@/components/skeleton/SHeader'
-const Header = dynamic(import("@/components/Header"),{ssr: false, loading: () =><SHeader/> })
+const Header = dynamic(import("@/components/Header"), { ssr: false, loading: () => <SHeader /> })
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react'
+import {Scrollbar} from 'smooth-scrollbar-react';
 
 
 const redHat = Red_Hat_Display({
@@ -23,9 +24,11 @@ const redHat = Red_Hat_Display({
 
 export default function App({ Component, pageProps }) {
 
-  useEffect(()=>{
+
+  useEffect(() => {
     AOS.init();
-  },[])
+    
+  }, [])
 
   return (
     <>
@@ -44,6 +47,9 @@ export default function App({ Component, pageProps }) {
             <link rel="icon" href="/theWayfarer logo_Round.png" />
           </Head>
           <main className={redHat.className}>
+            <Scrollbar 
+            damping={0} 
+            >
             <div style={{ position: 'sticky', top: 0, zIndex: 5 }}>
               <Header />
             </div>
@@ -51,6 +57,7 @@ export default function App({ Component, pageProps }) {
             <Component {...pageProps} />
 
             <Footer />
+            </Scrollbar>
           </main>
         </Layout>
       </ConfigProvider>

@@ -159,6 +159,10 @@ export default function Header({ }) {
             </Menu.Item>
           ))
           }
+          <Divider style={{margin:"5px 0"}}/>
+          <Menu.Item key={'blog'}>
+          <Link style={{textTransform:'uppercase'}} target='blank' href={'#'}><p>Blog</p></Link>
+        </Menu.Item>
         </Menu.SubMenu>
 
 
@@ -200,7 +204,7 @@ export default function Header({ }) {
         </Menu.SubMenu>
 
         <Menu.SubMenu
-          popupOffset={[200, 0]}
+          popupOffset={[100, 0]}
           title={<p >Activity{isMobile ? null : <FaAngleDown />}</p>}
         >
           <Menu.Item key={'package'} style={{ height: 'fit-content', backgroundColor: 'white' }}>
@@ -219,9 +223,7 @@ export default function Header({ }) {
             ))
           }
         </Menu.SubMenu>
-        <Menu.Item key={'blog'}>
-          <Link target='blank' href={'#'}><p>Blog</p></Link>
-        </Menu.Item>
+        
       </Menu>
     )
   }

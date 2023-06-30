@@ -45,7 +45,9 @@ export default function DivCarousel2({lightHead, darkHead, backgroundImage, slid
         // background:'red'
         // marginLeft: 100,
         position: 'relative',
-        marginBottom:"3.5rem"
+        marginBottom:"3.5rem",
+        transition:'all .5s'
+        
       }}
     >
       <div
@@ -95,7 +97,7 @@ export default function DivCarousel2({lightHead, darkHead, backgroundImage, slid
 
         >
           <Swiper
-            style={{ padding: "2.5rem 0",  "--swiper-navigation-color": "#fff", }}
+            style={{ padding: "2.5rem 0",  "--swiper-navigation-color": "#fff",transition:".5s" }}
             ref={slideRef}
             effect={"coverflow"}
             grabCursor={true}

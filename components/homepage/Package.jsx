@@ -37,7 +37,6 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
         backgroundPosition: "center bottom",
-        
         backgroundRepeat: 'no-repeat',
         float: 'right',
         // height:400,
@@ -92,16 +91,15 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
 
         >
           <Swiper
-            style={{ padding: "2.5rem 0",  "--swiper-navigation-color": "#fff", }}
+            style={{ padding: "2.5rem 0",  "--swiper-navigation-color": "#fff", overflowY:'hidden',}}
             ref={slideRef}
             effect={"coverflow"}
             grabCursor={true}
             navigation={true}
             modules={[Pagination, Navigation]}
-            slidesPerView={4.5}
+            slidesPerView={"auto"}
             spaceBetween={30}
-            loop={true}
-            
+            rewind
             
           >
             {sliderImages.map((item, index) => (

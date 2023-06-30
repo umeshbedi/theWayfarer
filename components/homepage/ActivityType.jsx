@@ -69,7 +69,11 @@ export default function ActivityType() {
             <div style={{ display: "flex", justifyContent: 'center', marginTop: "1.5rem" }}>
                 <div style={{ display: 'grid', gridTemplateColumns: "repeat(4, auto)", gridColumnGap: "6.5rem", gridRowGap: "2.5rem" }}>
                     {Icons.map((item, index) => (
-                        <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <div 
+                        data-aos-anchor-placement="top-bottom"
+                        data-aos="fade-up"
+                        data-aos-duration="2000"
+                        key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <div style={{ width: 120, height: 120, position: 'relative', opacity: .7, cursor: 'pointer' }}
                                 onMouseOver={() => {
                                     playSound("play", item.sound)

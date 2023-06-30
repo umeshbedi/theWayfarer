@@ -27,8 +27,8 @@ export default function Slider({ banner }) {
                 setAddStyle({
                     transform: `scale(${100 - scrollPercent}%, ${100 - scrollPercent}%)`,
                     opacity: `${100 - scrollPercent}%`,
-                    top: scrollPercent * 3.5,
-                    
+                    top: scrollPercent<100? scrollPercent * 3.5:350,
+                    transition:"transform .5s"
                 })
 
                 setCorner({borderRadius:`${radius}px ${radius}px 0 0`})
@@ -45,7 +45,6 @@ export default function Slider({ banner }) {
                 flexDirection: 'column',
                 justifyContent: 'flex-end',
                 position: 'relative',
-                transition: "all .3s",
                 
             }}
         >
