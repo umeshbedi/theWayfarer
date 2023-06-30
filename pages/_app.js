@@ -47,12 +47,14 @@ export default function App({ Component, pageProps }) {
             <link rel="icon" href="/theWayfarer logo_Round.png" />
           </Head>
           <main className={redHat.className}>
-            <Scrollbar 
-            damping={0} 
-            >
             <div style={{ position: 'sticky', top: 0, zIndex: 5 }}>
               <Header />
             </div>
+            
+            <Scrollbar 
+            damping={0} 
+            >
+            
 
             <Component {...pageProps} />
 

@@ -65,7 +65,8 @@ export default function SearchDiv() {
                         justifyContent: 'space-between',
                         padding: '30px 30px',
                         gap: 15,
-                        flexDirection: isMobile ? 'column' : 'row'
+                        flexDirection: isMobile ? 'column' : 'row',
+                        
                     }}
                     >
 

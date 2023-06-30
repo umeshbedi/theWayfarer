@@ -30,7 +30,7 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
     const slideRef = useRef()
     const containerRef = useRef()
 
-    console.log(activeIndex)
+    // console.log(activeIndex)
 
     return (
         <div
@@ -43,7 +43,8 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
                 // background:'red'
                 // marginLeft: 100,
                 position: 'relative',
-                marginBottom: "3.5rem"
+                marginBottom: "3.5rem",
+                
             }}
         >
             <div style={{marginLeft:"4.5rem"}}>
@@ -92,7 +93,8 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
                                         fontWeight: 700,
                                         fontSize: "2rem",
                                         // background:'yellow',
-                                        marginBottom:10
+                                        marginBottom:10,
+                                        
                                     }}
                                     >
                                         Outdoor Nature
