@@ -22,13 +22,14 @@ export default function Slider({ banner }) {
         window.addEventListener("scroll", () => {
             const scrollPercent = (window.scrollY * 100) / 600
             const radius = scrollPercent*4
+            const opacity = 1-(scrollPercent/100)
 
             if (scrollPercent != undefined) {
                 setAddStyle({
                     transform: `scale(${100 - scrollPercent}%, ${100 - scrollPercent}%)`,
-                    opacity: `${100 - scrollPercent}%`,
-                    top: scrollPercent<100? scrollPercent * 3.5:350,
-                    transition:"transform .5s"
+                    opacity: opacity,
+                    top: scrollPercent<100? scrollPercent * 5:350,
+                    transition:"transform 1s ease, top .5s ease"
                 })
 
                 setCorner({borderRadius:`${radius}px ${radius}px 0 0`})
@@ -66,7 +67,7 @@ export default function Slider({ banner }) {
                                     width: '100%',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    height: isMobile ? 300 : 550,
+                                    height: isMobile ? 300 : "100vh",
                                     position: 'relative'
                                 }}>
 
@@ -77,7 +78,7 @@ export default function Slider({ banner }) {
                                     style={{ objectFit: 'cover', ...corner }}
                                 />
                                 <div style={{
-                                    height: isMobile ? 300 : 550,
+                                    height: isMobile ? 300 :"100vh",
                                     backgroundImage: `linear-gradient(
                                                 90deg,rgba(0,0,0, 0.9),
                                                 rgba(0,0,0, .3),${isMobile ? null : "rgba(0,0,0, .2)"}
@@ -85,6 +86,7 @@ export default function Slider({ banner }) {
                                                 url('')`,
                                     position: 'absolute',
                                     width: '100%',
+                                    
                                     ...corner
                                 }}
                                 />

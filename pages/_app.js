@@ -11,7 +11,7 @@ const Header = dynamic(import("@/components/Header"), { ssr: false, loading: () 
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {Scrollbar} from 'smooth-scrollbar-react';
 
 
@@ -24,12 +24,13 @@ const redHat = Red_Hat_Display({
 
 export default function App({ Component, pageProps }) {
 
-
+  const [path, setPath] = useState("/")
   useEffect(() => {
     AOS.init();
-    
+    setPath(window.location.pathname)
   }, [])
 
+  
   return (
     <>
       <ConfigProvider
@@ -47,19 +48,14 @@ export default function App({ Component, pageProps }) {
             <link rel="icon" href="/theWayfarer logo_Round.png" />
           </Head>
           <main className={redHat.className}>
-            <div style={{ position: 'sticky', top: 0, zIndex: 5 }}>
+            <div style={{ position: path=="/"?'fixed':"sticky", top: 0, zIndex: 5, width:"100%" }}>
               <Header />
             </div>
-            
-            <Scrollbar 
-            damping={0} 
-            >
-            
-
+           
             <Component {...pageProps} />
 
             <Footer />
-            </Scrollbar>
+           
           </main>
         </Layout>
       </ConfigProvider>

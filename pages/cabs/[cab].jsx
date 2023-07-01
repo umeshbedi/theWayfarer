@@ -57,7 +57,7 @@ export default function Cab() {
                 >
                     <div style={{ width: "15%" }}>
                         <div style={{ width: "7rem", position: 'relative', height: "6rem" }}>
-                            <Image src={"/images/cabimage.jpg"} fill style={{ objectFit: 'cover', borderRadius: 20 }} />
+                            <Image src={"/images/cabimage2.jpg"} fill style={{ objectFit: 'cover', borderRadius: 20 }} />
                         </div>
 
                     </div>

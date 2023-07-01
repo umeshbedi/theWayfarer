@@ -84,7 +84,7 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
                         }}
                     >
                         {sliderImages.map((item, index) => (
-                            <SwiperSlide style={{ width: "30%", height: 460, transition:"width .5s",  }} key={index}>
+                            <SwiperSlide style={{ width: "30%", height: 460, transition:"width 1s ease",  }} key={index}>
                                 <div style={{ height: 460 }}>
                                     <Image src={item.thumbnail} alt={item.name} fill style={{ objectFit: 'cover', borderRadius: 50, position: 'absolute', zIndex: -1 }} />
                                     <div style={{position:'absolute',bottom:0, background:"linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)", width:'100%', borderRadius:"0 0 50px 50px", padding:40}}>
@@ -94,7 +94,7 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
                                         fontSize: "2rem",
                                         // background:'yellow',
                                         marginBottom:10,
-                                        
+                                        transition:"font-size 1.5s"
                                     }}
                                     >
                                         Outdoor Nature
