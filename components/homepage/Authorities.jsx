@@ -32,7 +32,7 @@ export default function Authorities() {
 
     return (
         <div style={{
-            padding: "5% 0 0 0",
+            padding: "4.5rem 0 0 0",
             backgroundImage: "url('/authorities/auth background.png')",
             display: 'flex', flexDirection: 'column',
             alignItems: 'center',
@@ -42,15 +42,15 @@ export default function Authorities() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Title red={"Accredited"} blue={" By"} />
             </div>
-
+            
 
             <div style={{
                 display: "flex",
                 gridGap: 30,
                 padding: '0 0 2% 0',
                 marginTop: isMobile ? '5%' : null,
-                flexWrap:'wrap',
-                justifyContent:'center'
+                flexWrap: 'wrap',
+                justifyContent: 'center'
             }}
             >
 
@@ -88,7 +88,7 @@ export default function Authorities() {
                 backgroundSize: 'cover',
                 display: 'flex', flexDirection: 'column',
                 alignItems: 'center',
-                padding: "5% 0",
+                padding: "4.5rem 0",
                 backgroundPositionY: 'top'
             }}
             >

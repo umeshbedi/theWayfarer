@@ -58,7 +58,7 @@ export default function SearchDiv() {
                         width: isMobile ? '80%' : '70%',
                         backgroundColor: 'white',
                         marginTop: -40,
-                        borderRadius: 50,
+                        borderRadius: isMobile?25:50,
                         boxShadow: '0 0 30px 0 rgba(0, 0, 0, 0.1)',
                         display: 'flex',
                         alignItems: 'center',

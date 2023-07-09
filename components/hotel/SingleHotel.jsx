@@ -10,8 +10,13 @@ import Image from 'next/image';
 
 export default function SingleHotel({ hotelData }) {
     const [isMobile, setIsMobile] = useState(false)
+    const [imageWidth, setImageWidth] = useState(null)
     useEffect(() => {
         setIsMobile(mobile())
+        var box = document.querySelector('.hotelContent')
+        var width = box.clientWidth
+        setImageWidth(width)
+        
     }, [isMobile])
     const [images, setImages] = useState([])
     // const hotel = hotelData.hotel
@@ -27,6 +32,8 @@ export default function SingleHotel({ hotelData }) {
         //     setImages(imageData.slice(0, 4))
         // }, 1000)
     }, [])
+    
+    
     return (
         <div
             data-aos="fade-up"
@@ -63,7 +70,7 @@ export default function SingleHotel({ hotelData }) {
                         </p>
                     </div>
                     
-                    <div style={{width:"100%", height:"100%", position:'relative'}}>
+                    <div style={{width:isMobile?imageWidth:"100%", height:isMobile?imageWidth:"100%", position:'relative'}}>
                         <Image src={"/images/samplehotel.jpg"} fill style={{objectFit:"cover", borderRadius:30}}/>
                     </div>
                     {/* <ImageGallery 
@@ -81,7 +88,9 @@ export default function SingleHotel({ hotelData }) {
                 </div>
 
                 {/* Hotels Details container */}
-                <div style={{ marginLeft: isMobile ? 0 : 20, marginTop: isMobile ? 15 : 0, display: 'flex', flexDirection: 'column', gap: 15 }}>
+                <div 
+                className='hotelContent'
+                style={{ marginLeft: isMobile ? 0 : 20, marginTop: isMobile ? 15 : 0, display: 'flex', flexDirection: 'column', gap: 15 }}>
                     <h1>Dedeman Konforu</h1>
                     <p>1 Night - 1 Adult</p>
                     <Rate style={{ fontSize: 14 }} disabled allowHalf defaultValue={4.5} />

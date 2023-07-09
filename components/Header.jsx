@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Menu, Col, Row, Button, Drawer, Space, Divider } from 'antd'
+import { Menu, Col, Row, Button, Drawer, Space, Divider, Dropdown } from 'antd'
 import { } from 'react-icons/fi'
 import Link from 'next/link';
 import { mobile } from './variables';
-import { FaAngleDown, FaYenSign } from 'react-icons/fa'
+import { FaAngleDown, FaUserAlt, FaYenSign } from 'react-icons/fa'
 import { IoIosMenu } from 'react-icons/io'
 import style from '@/styles/Home.module.scss'
 import { db } from '@/firebase';
@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { menu } from './localdb';
 
 import hstyle from './Header.module.scss'
+import { LoginOutlined, UserAddOutlined, UserOutlined, FacebookFilled, FacebookOutlined, InstagramOutlined, TwitterOutlined, YoutubeFilled } from '@ant-design/icons';
 
 export default function Header({ }) {
 
@@ -24,9 +25,46 @@ export default function Header({ }) {
   const [islandList, setIslandList] = useState([])
   const [activity, setActivity] = useState([])
 
+  const items = [
+    {
+      label: (
+        <a target="_blank" href="/login">
+          Login
+        </a>
+      ),
+      key: 'email',
+      icon: <LoginOutlined />,
+    },
+    {
+      label: (
+        <a target="_blank" href="/register">
+          Sign Up
+        </a>
+      ),
+      key: 'email',
+      icon: <UserAddOutlined />,
+    },
+  ];
+
+  const socialArr = [
+    { icon: <InstagramOutlined /> },
+    { icon: <FacebookFilled /> },
+    { icon: <TwitterOutlined /> },
+    { icon: <YoutubeFilled /> }
+  ]
+
+  function Social({ media }) {
+    return (
+      <a style={{ fontSize: "1.5rem", color: 'white' }}>
+        {media}
+      </a>
+    )
+  }
+
+
   useEffect(() => {
     setIsMobile(mobile())
-    console.log()
+
   }, [isMobile])
 
   useEffect(() => {
@@ -94,6 +132,7 @@ export default function Header({ }) {
 
 
 
+
   function MegaMenu({ content }) {
     return (
       <div style={{ display: 'grid', gridTemplateColumns: "repeat(4, 250px)", gridGap: 10, width: '100%', paddingTop: 10 }}>
@@ -105,18 +144,18 @@ export default function Header({ }) {
               <div style={{ height: 50, position: 'relative', width: 50, marginLeft: 10 }}>
                 <Image src={item.icon} fill style={{ objectFit: 'fill' }} />
               </div>
-              <p style={{textTransform:'uppercase'}}>{item.name}</p>
+              <p style={{ textTransform: 'uppercase' }}>{item.name}</p>
             </div>
             <ul style={{ marginLeft: 10 }}>
               {item.items.map((li, index) => (
-                <li key={index} style={{textTransform:'uppercase'}}>
+                <li key={index} style={{ textTransform: 'uppercase' }}>
                   <span style={{ display: 'flex', fontWeight: '600', gap: 10, alignItems: 'center', padding: 5, borderRadius: 10 }}>
-                      <div style={{ height: 30, position: 'relative', width: 30 }}>
-                        <Image src={li.icon} fill style={{ objectFit: 'fill', borderRadius: 50 }} />
-                      </div>
-                      {li.name}
-                    </span>
-                  
+                    <div style={{ height: 30, position: 'relative', width: 30 }}>
+                      <Image src={li.icon} fill style={{ objectFit: 'fill', borderRadius: 50 }} />
+                    </div>
+                    {li.name}
+                  </span>
+
                 </li>
               ))}
             </ul>
@@ -128,9 +167,48 @@ export default function Header({ }) {
     )
   }
 
+  function ActMenuMobile({ content }) {
+    return (
+      <>
+        <Menu.SubMenu title="test bhai" key={"test1"}>
+          <Menu.Item>
+            <Link target='blank' href={"/sdf"}>abc test</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link target='blank' href={"/sdf"}>abc test</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link target='blank' href={"/sdf"}>abc test</Link>
+          </Menu.Item>
+        </Menu.SubMenu>
+        <Menu.SubMenu title="test bhai 2" key={"test2"}>
+          <Menu.Item>
+            <Link target='blank' href={"/sdf"}>abc test</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link target='blank' href={"/sdf"}>abc test</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link target='blank' href={"/sdf"}>abc test</Link>
+          </Menu.Item>
+        </Menu.SubMenu>
+        {/* {menu.activity.map((item, index)=>(
+                <Menu.SubMenu key={item.name+Math.random(100,1000)} title={item.name}>
+                  {item.items.map((subitem, ind)=>(
+                    <Menu.Item key={subitem.name+Math.random(100,1000)}>
+                      <Link target='blank' href={subitem.slug}>{subitem.name}</Link>
+                    </Menu.Item>
+                  ))}
+                </Menu.SubMenu>
+              ))} */}
+
+      </>
+    )
+  }
 
   function RespMenu() {
     return (
+      <>
       <Menu
         mode={isMobile ? 'inline' : 'horizontal'}
         style={{
@@ -140,29 +218,29 @@ export default function Header({ }) {
           borderBottom: 0,
           backgroundColor: style.primaryColor,
           color: 'white',
-          textTransform:'uppercase',
-          
+          textTransform: 'uppercase',
+
         }}
         disabledOverflow
         onClick={(e) => { setActive(e.key); setOpen(false) }}
         activeKey={active}
-
+        // forceSubMenuRender
       >
 
         <Menu.Item key={'home'} >
-          <Link href={'/'}><p>Home</p></Link>
+          <Link href={'/'}><p style={{fontWeight:'bold'}}>Home</p></Link>
         </Menu.Item>
         <Menu.SubMenu title={<p >Know{isMobile ? null : <FaAngleDown />}</p>}>
           {menu.know.map((item, index) => (
             <Menu.Item key={item.name}>
-              <Link style={{textTransform:'uppercase'}} target='blank' href={item.slug}>{item.name}</Link>
+              <Link style={{ textTransform: 'uppercase' }} target='blank' href={item.slug}>{item.name}</Link>
             </Menu.Item>
           ))
           }
-          <Divider style={{margin:"5px 0"}}/>
+          <Divider style={{ margin: "5px 0" }} />
           <Menu.Item key={'blog'}>
-          <Link style={{textTransform:'uppercase'}} target='blank' href={'#'}><p>Blog</p></Link>
-        </Menu.Item>
+            <Link style={{ textTransform: 'uppercase' }} target='blank' href={'#'}><p>Blog</p></Link>
+          </Menu.Item>
         </Menu.SubMenu>
 
 
@@ -170,8 +248,8 @@ export default function Header({ }) {
           {
             menu.hotels.map((name, key) => (
               <Menu.Item key={name.name + key}>
-                <Link target='blank' style={{textTransform:'uppercase'}} 
-                href={`/search?location=Andaman and Nicobar Islands&category=${name.name}`}>{name.name}</Link>
+                <Link target='blank' style={{ textTransform: 'uppercase' }}
+                  href={`/search?location=Andaman and Nicobar Islands&category=${name.name}`}>{name.name}</Link>
               </Menu.Item>
             ))
           }
@@ -182,36 +260,70 @@ export default function Header({ }) {
           {
             menu.rentals.map((name, key) => (
               <Menu.Item key={name.name + key}>
-                <Link style={{textTransform:'uppercase'}} target='blank' href={name.slug}>{name.name}</Link>
+                <Link style={{ textTransform: 'uppercase' }} target='blank' href={name.slug}>{name.name}</Link>
               </Menu.Item>
             ))
           }
         </Menu.SubMenu>
 
         <Menu.Item key={'home'} >
-          <Link href={'/boat-tickets'}><p>Boat Tickets</p></Link>
+          <Link href={'/boat-tickets'}><p style={{fontWeight:'bold'}}>Boat Tickets</p></Link>
         </Menu.Item>
 
         <Menu.SubMenu
           popupOffset={[200, 0]}
           title={<p >Package{isMobile ? null : <FaAngleDown />}</p>}
         >
-          <Menu.Item key={'package'} style={{ height: 'fit-content', backgroundColor: 'white' }}>
-            {packages.length != 0 &&
-              <MegaMenu />
-            }
-          </Menu.Item>
+          {!isMobile &&
+            <Menu.Item key={'package'} style={{ height: 'fit-content', backgroundColor: 'white' }}>
+              {packages.length != 0 &&
+                <MegaMenu />
+              }
+            </Menu.Item>
+          }
+
+          {isMobile &&
+            <>
+              {menu.activity.map((item, index)=>(
+                <Menu.SubMenu key={item.name+Math.random(100,1000)} title={item.name}>
+                  {item.items.map((subitem, ind)=>(
+                    <Menu.Item key={subitem.name+Math.random(100,1000)}>
+                      <Link target='blank' href={subitem.slug}>{subitem.name}</Link>
+                    </Menu.Item>
+                  ))}
+                </Menu.SubMenu>
+              ))} 
+            </>
+          }
+
         </Menu.SubMenu>
 
         <Menu.SubMenu
           popupOffset={[100, 0]}
           title={<p >Activity{isMobile ? null : <FaAngleDown />}</p>}
         >
-          <Menu.Item key={'package'} style={{ height: 'fit-content', backgroundColor: 'white' }}>
-            {packages.length != 0 &&
-              <MegaMenu />
-            }
-          </Menu.Item>
+          {!isMobile &&
+            <Menu.Item key={'package'} style={{ height: 'fit-content', backgroundColor: 'white' }}>
+              {packages.length != 0 &&
+                <MegaMenu />
+              }
+            </Menu.Item>
+          }
+
+          {isMobile && 
+          <>
+          {menu.activity.map((item, index)=>(
+            <Menu.SubMenu key={item.name+Math.random(100,1000)} title={item.name}>
+              {item.items.map((subitem, ind)=>(
+                <Menu.Item key={subitem.name+Math.random(100,1000)}>
+                  <Link target='blank' href={subitem.slug}>{subitem.name}</Link>
+                </Menu.Item>
+              ))}
+            </Menu.SubMenu>
+          ))} 
+        </>
+          }
+
         </Menu.SubMenu>
 
         <Menu.SubMenu title={<p >Ferry{isMobile ? null : <FaAngleDown />}</p>}>
@@ -223,14 +335,34 @@ export default function Header({ }) {
             ))
           }
         </Menu.SubMenu>
-        
+        {!isMobile &&
+          <Menu.SubMenu title={<p ><FaUserAlt /> User{isMobile ? null : <FaAngleDown />}</p>}>
+            <Menu.Item>
+              <Link target='blank' href={"/login"}> <LoginOutlined /> Login</Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link target='blank' href={"/register"}> <UserAddOutlined /> Sign Up</Link>
+            </Menu.Item>
+          </Menu.SubMenu>
+        }
+
       </Menu>
+      {isMobile&&
+       <div style={{  width: "100%", height:"30%", display:"flex", justifyContent:"center", alignItems:"center" }}>
+       <div style={{display:'flex', gap:"1.5rem"}}>
+            {socialArr.map((item, index) => (
+              <Social key={index} media={item.icon} />
+            ))}
+          </div>
+        </div>
+      }
+      </>
     )
   }
 
   return (
     <div style={{
-      padding: '2% 5% 1% 5%',
+      padding: '1% 5% .5% 5%',
       backgroundColor: style.primaryColor,
 
     }}
@@ -239,40 +371,52 @@ export default function Header({ }) {
 
       <Drawer
         placement='right'
-        width={'70%'}
+        width={'100%'}
         open={open}
         onClose={() => setOpen(false)}
-
+        style={{ background: style.primaryColor, position: 'relative' }}
 
       >
         <RespMenu />
+       
       </Drawer>
 
-      <Row>
-        <Col span={18} push={6}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', paddingLeft: '10px' }}>
+        <div>
+          <Link href={'/'}>
+            <div style={{ width: isMobile ? 150 : 200, height: "100%", position: 'relative', }}>
+              <Image src='/theWayfarer logo_Final.png'
+                fill
+                loading='lazy'
+                style={{ objectFit: 'contain' }}
+                alt='ronitholidays Logo Final' />
+            </div>
+          </Link>
+        </div>
+
+        <div>
           {isMobile ?
             (
-              <p
-                style={{ float: 'right', fontSize: 35, color: style.primaryColor }}
-                onClick={() => setOpen(true)}
+              <div
+                style={{ float: 'right', fontSize: 35, color: "white", display: 'flex', alignItems: 'center', gap: 10, padding: "5px 0" }}
               >
-                <IoIosMenu style={{ fontSize: 35 }} />
-              </p>
+                <Dropdown
+                  menu={{ items }}
+                  placement='bottomRight'
+                  arrow
+
+                >
+                  <UserOutlined style={{ fontSize: 25 }} />
+                </Dropdown>
+                <IoIosMenu onClick={() => setOpen(true)} />
+              </div>
             ) :
             <RespMenu />
           }
-        </Col>
-        <Col span={6} pull={18} style={{}}>
-          <Link href={'/'}>
-            <Image src='/theWayfarer logo_Final.png'
-              height={45}
-              width={200}
-              loading='lazy'
-              style={{}}
-              alt='ronitholidays Logo Final' />
-          </Link>
-        </Col>
-      </Row>
+        </div>
+
+
+      </div>
 
 
 

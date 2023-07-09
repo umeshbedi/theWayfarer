@@ -12,22 +12,18 @@ const Header = dynamic(import("@/components/Header"), { ssr: false, loading: () 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect, useState } from 'react'
-import {Scrollbar} from 'smooth-scrollbar-react';
+import { mobile } from '@/components/variables'
 
 
-const redHat = Red_Hat_Display({
-  weight: ['400', '500', '600', '700', '900'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-  display: 'swap'
-})
+
 
 export default function App({ Component, pageProps }) {
-
+  const [isMobile, setIsMobile] = useState(false)
   const [path, setPath] = useState("/")
   useEffect(() => {
     AOS.init();
     setPath(window.location.pathname)
+    setIsMobile(mobile())
   }, [])
 
   
@@ -47,8 +43,8 @@ export default function App({ Component, pageProps }) {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/theWayfarer logo_Round.png" />
           </Head>
-          <main className={redHat.className}>
-            <div style={{ position: path=="/"?'fixed':"sticky", top: 0, zIndex: 5, width:"100%" }}>
+          <main >
+            <div style={{ position: "sticky", top: 0, zIndex: 5, width:"100%" }}>
               <Header />
             </div>
            

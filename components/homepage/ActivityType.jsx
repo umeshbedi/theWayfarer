@@ -4,6 +4,7 @@ import style from '@/styles/Home.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRightOutlined } from '@ant-design/icons'
+import { mobile } from '../variables'
 
 export default function ActivityType() {
 
@@ -20,17 +21,25 @@ export default function ActivityType() {
         { name: "Book Scuba Diving", icon: "/activities/parasailing.png", sound: "/activities/water-swashing.mp3" },
     ]
 
-    function playSound(action, url) {
-        var audio = document.createElement("audio")
-        audio.type = "audio/mpeg"
-        audio.src = url
-        if (action == "play") {
-            audio.play()
-        }
-        else {
-            audio.pause()
-        }
-    }
+    const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+      setIsMobile(mobile())
+  }, [isMobile])
+
+  
+
+    // function playSound(action, url) {
+    //     var audio = document.createElement("audio")
+    //     audio.type = "audio/mpeg"
+    //     audio.src = url
+    //     if (action == "play") {
+    //         audio.play()
+    //     }
+    //     else {
+    //         audio.pause()
+    //     }
+    // }
 
 
     function Button({ name, slug }) {
@@ -53,7 +62,7 @@ export default function ActivityType() {
                     transition: "padding .5s",
                     display: 'flex',
                     alignItems: 'center',
-
+                    marginBottom:isMobile?"2.5rem":null
                 }}
                 href={slug}>
                 {name} <ArrowRightOutlined style={{ display: display, position: 'absolute', right: 10 }} />
@@ -62,12 +71,15 @@ export default function ActivityType() {
     }
     return (
         <div style={{ marginBottom: "4.5rem" }}>
-            <h1 style={{ color: style.primaryColor, fontWeight: 700, fontSize: "3.2rem", lineHeight: 1.1, marginBottom: 20, paddingLeft: '4.5rem' }}>
+            <h1 
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            style={{ color: style.primaryColor, fontWeight: 900, fontSize: isMobile?"2.8rem":"3.2rem", lineHeight: 1.1, marginBottom: 20, paddingLeft: isMobile?"2.5rem":'4.5rem' }}>
                 Types of <span style={{ color: 'grey' }}>Activities</span>
             </h1>
             
             <div style={{ display: "flex", justifyContent: 'center', marginTop: "1.5rem" }}>
-                <div style={{ display: 'grid', gridTemplateColumns: "repeat(4, auto)", gridColumnGap: "6.5rem", gridRowGap: "2.5rem" }}>
+                <div style={{ display: 'flex', flexWrap:'wrap', width:"90%", justifyContent:'space-around', gap:isMobile?"0":"5.5rem" }}>
                     {Icons.map((item, index) => (
                         <div 
                         data-aos-anchor-placement="top-bottom"
@@ -76,7 +88,7 @@ export default function ActivityType() {
                         key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <div style={{ width: 120, height: 120, position: 'relative', opacity: .7, cursor: 'pointer' }}
                                 onMouseOver={() => {
-                                    playSound("play", item.sound)
+                                    // playSound("play", item.sound)
                                    
                                 }}
                                 onMouseOut={() => {

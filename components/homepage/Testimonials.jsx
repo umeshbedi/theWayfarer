@@ -11,6 +11,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { FaQuoteLeft } from 'react-icons/fa';
 import { testimonials } from '../localdb';
+import style from '@/styles/Home.module.scss'
 
 
 export default function Testimonials({ testimonialsData }) {
@@ -26,18 +27,18 @@ export default function Testimonials({ testimonialsData }) {
 
     return (
 
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#252d35', padding: '4% 0' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#252d35', padding: '4.5rem 0' }}>
             <img src="/images/Google-Reviews.png" alt="Google Reviews" style={{height:70}}/>
             <div style={{display:'flex', justifyContent:'center'}}>
             <Title 
-            red={"Google Reviews for"} 
-            blue={" The WayFerer"} isdark 
+            red={"The"} 
+            blue={" WayFarer"} isdark 
             extra={
                 <div>
                     <p style={{textAlign:'center', color:'white', padding:"0 10px"}}>You can review us for our services ➡ <span>
                         <a href='#' 
                         target='blank'
-                        style={{color:'#4285F4'}}>Click Here
+                        style={{color:style.primaryColor}}>Click Here
                         </a>
                         </span></p>
                 </div>

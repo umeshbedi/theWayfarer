@@ -14,27 +14,64 @@ export default function Slider({ banner }) {
 
     const [corner, setCorner] = useState({})
 
+    const [height, setHeight] = useState(null)
+
     useEffect(() => {
         setIsMobile(mobile())
+        setHeight(
+            isMobile?
+            document.documentElement.clientWidth
+            :
+            document.documentElement.clientHeight - 60
+            )
     }, [isMobile])
 
     useEffect(() => {
-        window.addEventListener("scroll", () => {
-            const scrollPercent = (window.scrollY * 100) / 600
-            const radius = scrollPercent*4
-            const opacity = 1-(scrollPercent/100)
+
+        function scrolling() {
+            const scrollHeight = isMobile ? height : 600;
+            const scrollPercent = (window.scrollY * 100) / scrollHeight
+            const radius = scrollPercent * 2
+            const opacity = 1 - (scrollPercent / 100)
+            var scale = 100
+
+            // console.log(scrollPercent)
+            if (scrollPercent < 50) {
+                if (scrollPercent <= 10) {
+                    scale = 100
+                }
+                else if (scrollPercent > 10 && scrollPercent <= 20) {
+                    scale = 80
+                }
+                else if (scrollPercent > 20 && scrollPercent <= 30) {
+                    scale = 70
+                }
+                else if (scrollPercent > 30 && scrollPercent <= 40) {
+                    scale = 60
+                }
+                else if (scrollPercent > 40 && scrollPercent <= 50) {
+                    scale = 50
+                }
+
+
+
+
+            } else { scale = 50 }
 
             if (scrollPercent != undefined) {
                 setAddStyle({
-                    transform: `scale(${100 - scrollPercent}%, ${100 - scrollPercent}%)`,
+                    transform: `scale(${scale}%, ${scale}%)`,
                     opacity: opacity,
-                    top: scrollPercent<100? scrollPercent * 5:350,
-                    transition:"transform 1s ease, top .5s ease"
+                    top: scrollPercent < 100 ? scrollPercent * 5 : 350,
+                    transition: "transform 1.5s, top .5s ease"
                 })
 
-                setCorner({borderRadius:`${radius}px ${radius}px 0 0`})
+                setCorner({ borderRadius: `${radius}px ${radius}px 0 0` })
             }
-        })
+        }
+
+
+        window.addEventListener("scroll", scrolling)
     }, [])
 
     return (
@@ -46,12 +83,12 @@ export default function Slider({ banner }) {
                 flexDirection: 'column',
                 justifyContent: 'flex-end',
                 position: 'relative',
-                
+
             }}
         >
 
-            <div 
-            style={{ transform: "rotate(180deg)", position: 'absolute', zIndex: 2, width: '100%', }}>
+            <div
+                style={{ transform: "rotate(180deg)", position: 'absolute', zIndex: 2, width: '100%', }}>
                 <Wave />
             </div>
             <Carousel
@@ -67,39 +104,37 @@ export default function Slider({ banner }) {
                                     width: '100%',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    height: isMobile ? 300 : "100vh",
-                                    position: 'relative'
+                                    height: height,
+                                    position: 'relative',
+
                                 }}>
 
                                 <Image
                                     src={item.image}
                                     fill
                                     loading='lazy'
-                                    style={{ objectFit: 'cover', ...corner }}
+                                    style={{ objectFit: 'cover', ...corner, }}
                                 />
                                 <div style={{
-                                    height: isMobile ? 300 :"100vh",
-                                    backgroundImage: `linear-gradient(
-                                                90deg,rgba(0,0,0, 0.9),
-                                                rgba(0,0,0, .3),${isMobile ? null : "rgba(0,0,0, .2)"}
-                                                ), 
-                                                url('')`,
+                                    height: height,
+                                    // backgroundImage: `linear-gradient(0deg,rgba(0,0,0, 0.9),rgba(0,0,0, .3),rgba(0,0,0, 0))`,
                                     position: 'absolute',
                                     width: '100%',
-                                    
+
                                     ...corner
                                 }}
                                 />
-                                <Row style={{ width: '95%', position: 'absolute', padding: "10%" }}>
-                                    <Col span={isMobile ? 16 : 24} style={{}}>
-
-                                        <h1 style={{ color: 'white', fontSize: "5.25em", fontWeight: 900 }}>{item.heading}</h1>
-                                        <Space direction='vertical' style={{ gap: 20 }}>
-                                            <p style={{ color: 'white', fontSize: "2.5em", fontWeight: 600, fontStyle: 'italic' }}>{item.subHeading}</p>
+                                {!isMobile&&
+                                <Row style={{ width: '100%', position: 'absolute', padding: "10%" }}>
+                                    <Col span={24} style={{}}>
+                                        <div style={{ textAlign: isMobile ? 'center' : null }}>
+                                            <h1 style={{ color: 'white', fontSize: isMobile ? "2.5rem" : "4rem", fontWeight: 900 }}>{item.heading}</h1>
+                                            <p style={{ color: 'white', fontSize: isMobile ? "1.5rem" : "2.5em", fontWeight: 600, fontStyle: 'italic', marginBottom: 30 }}>{item.subHeading}</p>
                                             <Link target='blank' style={{ background: style.primaryColor, padding: "10px 20px", borderRadius: 50, color: 'white', fontWeight: 700 }} href={"/contact-us"}>Contact Us</Link>
-                                        </Space>
+                                        </div>
+
                                     </Col>
-                                </Row>
+                                </Row>}
 
                             </div>
                         </div>

@@ -8,8 +8,11 @@ import DivCarousel2 from '@/components/homepage/DivCarousel2'
 import Testimonials from '@/components/homepage/Testimonials'
 import Package from '@/components/homepage/Package'
 import ActivityType from '@/components/homepage/ActivityType'
+import SHome from '@/components/skeleton/SHome'
 
-const Slider = dynamic(() => import('../components/homepage/slider'))
+const Slider = dynamic(() => import('../components/homepage/slider'), {ssr:false, loading:()=><SHome/>})
+// const DivCarousel = dynamic(() => import('@/components/homepage/DivCarousel'), {ssr:false, loading:()=><SHome/>})
+
 
 
 export default function Home({

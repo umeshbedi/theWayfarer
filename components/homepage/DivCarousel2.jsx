@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import style from '@/styles/Home.module.scss'
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,6 +13,7 @@ import { sliderImages } from '../localdb';
 import Image from 'next/image';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import Title from './Title';
+import { mobile } from '../variables';
 
 
 
@@ -31,23 +32,27 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
     const containerRef = useRef()
 
     // console.log(activeIndex)
+    const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(mobile())
+    
+  }, [isMobile])
+  
 
     return (
         <div
             ref={containerRef}
             style={{
-                // ...containerStyle,
-                // backgroundColor: 'grey',
-                // float: 'right',
-                // height:400,
-                // background:'red'
-                // marginLeft: 100,
                 position: 'relative',
                 marginBottom: "3.5rem",
                 
             }}
         >
-            <div style={{marginLeft:"4.5rem"}}>
+            <div 
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            style={{marginLeft:isMobile?"2.5rem":"4.5rem"}}>
                 <Title red={"Sustain"} blue={"ability"}/>
             </div>
             <div
@@ -60,38 +65,30 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
                     id='hompagebigslider'
                 >
                     <Swiper
-                        style={{ "--swiper-navigation-color": "#fff", paddingRight:"30%"}}
+                        style={{ "--swiper-navigation-color": "#fff", padding:isMobile?"0 20px":"0 30% 0 0" }}
                         ref={slideRef}
                         // effect={"coverflow"}
                         grabCursor={true}
                         navigation={true}
                         modules={[Pagination, Navigation]}
                         // centeredSlides={center}
-                        slidesPerView={3}
-                        spaceBetween={30}
+                        slidesPerView={isMobile?2:3}
+                        spaceBetween={isMobile?10:30}
                         loop={true}
                         onSlidesLengthChange={(e)=>{console.log(e)}}
-                        onSlideChange={(e) => {
-                            setActiveIndex(e.activeIndex)
-                            // console.log(e)
-                            if (e.activeIndex > 0) {
-                                setContainerStyle({ width: '100%'})
-                                
-                            } else {
-                                setContainerStyle({ width: '90%'})
-                                
-                            }
-                        }}
+                       
                     >
                         {sliderImages.map((item, index) => (
-                            <SwiperSlide style={{ width: "30%", height: 460, transition:"width 1s ease",  }} key={index}>
+                            <SwiperSlide 
+                            className='singleSwiper'
+                            style={{ width: isMobile?"100%":"30%", height: isMobile?"75vh":460, transition:"width 1s ease",  }} key={index}>
                                 <div style={{ height: 460 }}>
                                     <Image src={item.thumbnail} alt={item.name} fill style={{ objectFit: 'cover', borderRadius: 50, position: 'absolute', zIndex: -1 }} />
                                     <div style={{position:'absolute',bottom:0, background:"linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)", width:'100%', borderRadius:"0 0 50px 50px", padding:40}}>
                                     <h1 style={{
                                         color: 'white',
-                                        fontWeight: 700,
-                                        fontSize: "2rem",
+                                        fontWeight: 800,
+                                        fontSize: isMobile?"1.6rem":"2rem",
                                         // background:'yellow',
                                         marginBottom:10,
                                         transition:"font-size 1.5s"

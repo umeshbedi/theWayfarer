@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import style from '@/styles/Home.module.scss'
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,6 +12,7 @@ import "swiper/css/navigation";
 import { sliderImages } from '../localdb';
 import Image from 'next/image';
 import { ArrowRightOutlined } from '@ant-design/icons';
+import { mobile } from '../variables';
 
 
 
@@ -28,6 +29,13 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
   const slideRef = useRef()
   const containerRef = useRef()
 
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+      setIsMobile(mobile())
+  }, [isMobile])
+  
+
   return (
     <div
       ref={containerRef}
@@ -39,9 +47,6 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
         backgroundPosition: "center bottom",
         backgroundRepeat: 'no-repeat',
         float: 'right',
-        // height:400,
-        // background:'red'
-        // marginLeft: 100,
         position: 'relative',
         marginBottom:"3.5rem"
       }}
@@ -50,7 +55,7 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
           style={{
             ...subHeadStyle,
             // backgroundColor: 'yellow',
-            paddingLeft: '4.5rem',
+            paddingLeft: isMobile?"2.5rem":'4.5rem',
             alignItems: 'center',
             zIndex: 2,
             paddingTop:"2rem"
@@ -59,11 +64,16 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
 
           <div>
 
-            <h1 style={{ color: style.primaryColor, fontWeight: 700, fontSize: "3.2rem", lineHeight: 1.1, marginBottom: 20 }}>
+            <h1 
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            style={{ color: style.primaryColor, fontWeight: 900, fontSize:isMobile?"2.8rem": "3.2rem", lineHeight: 1.1, marginBottom: 20 }}>
               {lightHead} <span style={{ color: 'grey' }}>{darkHead}</span>
             </h1>
 
             <Link target='blank'
+            data-aos="fade-up"
+            data-aos-duration="2000"
               onMouseOver={() => setButtonFocus(true)}
               onMouseOut={() => setButtonFocus(false)}
               style={{
@@ -91,25 +101,25 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
 
         >
           <Swiper
-            style={{ padding: "2.5rem 0",  "--swiper-navigation-color": "#fff", overflowY:'hidden',}}
+            style={{ padding: "2.5rem 10px",  "--swiper-navigation-color": "#fff", }}
             ref={slideRef}
             effect={"coverflow"}
             grabCursor={true}
             navigation={true}
             modules={[Pagination, Navigation]}
             slidesPerView={"auto"}
-            spaceBetween={30}
+            spaceBetween={isMobile?10:30}
             rewind
             
           >
             {sliderImages.map((item, index) => (
-              <SwiperSlide style={{ width: 250, height: 350 }} key={index}>
+              <SwiperSlide style={{ width: 250, height: 350 }} key={index} className='singleSwiper'>
                 <div style={{ height: 350 }}>
-                  <Image src={item.thumbnail} alt={item.name} fill style={{ objectFit: 'cover', borderRadius: 50, position: 'absolute',zIndex:-1 }} />
+                  <Image src={item.thumbnail} alt={item.name} fill style={{ objectFit: 'cover', borderRadius: isMobile?25:50, position: 'absolute',zIndex:-1 }} />
                   <h1 style={{ 
                     color: 'white', 
                     fontWeight: 700, 
-                    fontSize: "2.2rem", 
+                    fontSize: isMobile?"1.8rem":"2.2rem", 
                     writingMode:'vertical-lr',
                     transform:'rotate(-180deg)',
                     float:'bottom',
