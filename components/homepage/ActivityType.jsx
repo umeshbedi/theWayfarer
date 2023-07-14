@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import { mobile } from '../variables'
+import MyButton from '../utils/MyButton'
 
 export default function ActivityType() {
 
@@ -43,7 +44,6 @@ export default function ActivityType() {
 
 
     function Button({ name, slug }) {
-        const [buttonFocus, setButtonFocus] = useState(false)
         const [display, setDisplay] = useState('none')
         const [padding, setPadding] = useState("10px 20px")
         return (
@@ -79,12 +79,12 @@ export default function ActivityType() {
             </h1>
             
             <div style={{ display: "flex", justifyContent: 'center', marginTop: "1.5rem" }}>
-                <div style={{ display: 'flex', flexWrap:'wrap', width:"90%", justifyContent:'space-around', gap:isMobile?"0":"5.5rem" }}>
+                <div 
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                style={{ display: 'grid', width:isMobile?"100%":"90%", gridTemplateColumns:`repeat(${isMobile?2:4}, auto)`, transform:isMobile?'scale(.9)':null, rowGap:'1.5rem' }}>
                     {Icons.map((item, index) => (
                         <div 
-                        data-aos-anchor-placement="top-bottom"
-                        data-aos="fade-up"
-                        data-aos-duration="2000"
                         key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <div style={{ width: 120, height: 120, position: 'relative', opacity: .7, cursor: 'pointer' }}
                                 onMouseOver={() => {
@@ -100,7 +100,7 @@ export default function ActivityType() {
                             >
                                 <Image src={item.icon} alt={item.name} fill style={{ objectFit: 'contain' }} />
                             </div>
-                            <Button name={item.name} slug={"#"} />
+                            <MyButton name={item.name} slug={"#"} />
                         </div>
                     ))}
                 </div>

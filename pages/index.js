@@ -2,18 +2,23 @@ import Head from 'next/head'
 import style from '@/styles/Home.module.scss'
 import dynamic from 'next/dynamic'
 import { db } from '@/firebase'
-import DivCarousel from '@/components/homepage/DivCarousel'
+// import DivCarousel from '@/components/homepage/DivCarousel'
 import Authorities from '@/components/homepage/Authorities'
-import DivCarousel2 from '@/components/homepage/DivCarousel2'
 import Testimonials from '@/components/homepage/Testimonials'
-import Package from '@/components/homepage/Package'
 import ActivityType from '@/components/homepage/ActivityType'
 import SHome from '@/components/skeleton/SHome'
+import Butter from '@/components/utils/smoothScroll'
+import SHeader from '@/components/skeleton/SHeader'
+import { useEffect, useState } from 'react'
+import { mobile } from '@/components/variables'
 
-const Slider = dynamic(() => import('../components/homepage/slider'), {ssr:false, loading:()=><SHome/>})
-// const DivCarousel = dynamic(() => import('@/components/homepage/DivCarousel'), {ssr:false, loading:()=><SHome/>})
-
-
+const Slider = dynamic(() => import('../components/homepage/slider'), { ssr: false, loading: () => <SHome /> })
+const DivCarousel = dynamic(() => import('@/components/homepage/DivCarousel'), { ssr: false, loading: () => <SHome /> })
+const Header = dynamic(import("@/components/Header"), { ssr: false, loading: () => <SHeader /> })
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false, loading: () => <SHome /> })
+const Package = dynamic(() => import("@/components/homepage/Package"), { ssr: false, loading: () => <SHome /> })
+const DivCarousel2 = dynamic(() => import("@/components/homepage/DivCarousel2"), { ssr: false, loading: () => <SHome /> })
+const Counter = dynamic(() => import('@/components/homepage/Counter'), { ssr: false, loading: () => <SHome /> })
 
 export default function Home({
   data,
@@ -24,6 +29,20 @@ export default function Home({
   testimonials
 }) {
 
+  const [menuheight, setMenuheight] = useState(null)
+  useEffect(() => {
+    var menuel = document.querySelector('.menuheight')
+    var height = menuel.clientHeight
+    setMenuheight(height)
+  }, [])
+
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(mobile())
+  }, [isMobile])
+
+
 
   return (
     <>
@@ -33,45 +52,84 @@ export default function Home({
       </Head>
 
       <main>
-        <div style={{ overflowX: 'hidden'}}>
-          <Slider banner={data.banner} />
-          
-          <DivCarousel 
-          lightHead={"Sustainable "} 
-          darkHead={"destinations"} 
-          button={{name:"All Destination", slug:"/destination"}}
-          backgroundImage={'/divcarousel/bg-1.jpg'}
-          />
+        <div className='menuheight' style={{ position: 'fixed', width: '100%', top: 0, zIndex: 10 }}><Header /></div>
+        <Butter wrapperId={"homepagescroll"} >
+          <div style={{ marginTop: menuheight }}>
+            <Slider banner={data.banner} />
 
-          <DivCarousel 
-          lightHead={"Sustainable "} 
-          darkHead={"experience"} 
-          button={{name:"All Experinces", slug:"/destination"}}
-          backgroundImage={'/divcarousel/bg-2.jpg'}
-          />
+            {isMobile ? (
+              <Package
+                lightHead={"Sustainable "}
+                darkHead={"destinations"}
+                button={{ name: "All Destination", slug: "/destination" }}
 
-          <DivCarousel 
-          lightHead={"Sustainable "} 
-          darkHead={"hotels"} 
-          button={{name:"All Hotels", slug:"/destination"}}
-          backgroundImage={'/divcarousel/bg-3.jpg'}
-          />
-    
-          <DivCarousel2
-          button={{name:"All Hotels", slug:"/destination"}}
-          />
+              />
+            ) : (
+              <DivCarousel
+                lightHead={"Sustainable "}
+                darkHead={"destinations"}
+                button={{ name: "All Destination", slug: "/destination" }}
+                backgroundImage={'/divcarousel/bg-1.jpg'}
+              />
 
-          <Package
-          lightHead={"Trending"} 
-          darkHead={"Activities"}
-          button={{name:"All Activities", slug:"/activities"}}
-          
-          />
+            )}
 
-        </div>
-          <ActivityType/>
-          <Testimonials/>
-          <Authorities/>
+
+            {isMobile ? (
+              <Package
+                lightHead={"Sustainable "}
+                darkHead={"experience"}
+                button={{ name: "All Experinces", slug: "/destination" }}
+
+              />
+            ) : (
+              <DivCarousel
+                lightHead={"Sustainable "}
+                darkHead={"experience"}
+                button={{ name: "All Experinces", slug: "/destination" }}
+                backgroundImage={'/divcarousel/bg-2.jpg'}
+              />
+
+            )}
+
+
+            {isMobile ? (
+              <Package
+                lightHead={"Sustainable "}
+                darkHead={"hotels"}
+                button={{ name: "All Hotels", slug: "/destination" }}
+
+              />
+            ) : (
+              <DivCarousel
+                lightHead={"Sustainable "}
+                darkHead={"hotels"}
+                button={{ name: "All Hotels", slug: "/destination" }}
+                backgroundImage={'/divcarousel/bg-3.jpg'}
+              />
+
+            )}
+
+
+            <DivCarousel2
+              button={{ name: "All Hotels", slug: "/destination" }}
+            />
+
+            <Package
+              lightHead={"Trending"}
+              darkHead={"Activities"}
+              button={{ name: "All Activities", slug: "/activities" }}
+
+            />
+
+          </div>
+          <ActivityType />
+          <Testimonials />
+          <Counter />
+          <Authorities />
+          <Footer />
+        
+        </Butter>
 
       </main>
     </>

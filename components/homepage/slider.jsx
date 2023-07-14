@@ -15,70 +15,66 @@ export default function Slider({ banner }) {
     const [corner, setCorner] = useState({})
 
     const [height, setHeight] = useState(null)
+    const [headPos, setHeadPos] = useState(null)
 
     useEffect(() => {
         setIsMobile(mobile())
-        setHeight(
-            isMobile?
-            document.documentElement.clientWidth
-            :
-            document.documentElement.clientHeight - 60
-            )
+        setHeight(document.documentElement.clientHeight - 50)
     }, [isMobile])
 
     useEffect(() => {
 
-        function scrolling() {
-            const scrollHeight = isMobile ? height : 600;
-            const scrollPercent = (window.scrollY * 100) / scrollHeight
-            const radius = scrollPercent * 2
-            const opacity = 1 - (scrollPercent / 100)
-            var scale = 100
+        // function scrolling() {
+        //     const scrollHeight = isMobile ? height : 600;
+        //     const scrollPercent = (window.scrollY * 100) / scrollHeight
+        //     const radius = scrollPercent * 2
+        //     const opacity = 1 - (scrollPercent / 100)
+        //     var scale = 100
 
-            // console.log(scrollPercent)
-            if (scrollPercent < 50) {
-                if (scrollPercent <= 10) {
-                    scale = 100
-                }
-                else if (scrollPercent > 10 && scrollPercent <= 20) {
-                    scale = 80
-                }
-                else if (scrollPercent > 20 && scrollPercent <= 30) {
-                    scale = 70
-                }
-                else if (scrollPercent > 30 && scrollPercent <= 40) {
-                    scale = 60
-                }
-                else if (scrollPercent > 40 && scrollPercent <= 50) {
-                    scale = 50
-                }
-
-
+        //     // console.log(scrollPercent)
+        //     if (scrollPercent < 50) {
+        //         if (scrollPercent <= 10) {
+        //             scale = 100
+        //         }
+        //         else if (scrollPercent > 10 && scrollPercent <= 20) {
+        //             scale = 80
+        //         }
+        //         else if (scrollPercent > 20 && scrollPercent <= 30) {
+        //             scale = 70
+        //         }
+        //         else if (scrollPercent > 30 && scrollPercent <= 40) {
+        //             scale = 60
+        //         }
+        //         else if (scrollPercent > 40 && scrollPercent <= 50) {
+        //             scale = 50
+        //         }
 
 
-            } else { scale = 50 }
-
-            if (scrollPercent != undefined) {
-                setAddStyle({
-                    transform: `scale(${scale}%, ${scale}%)`,
-                    opacity: opacity,
-                    top: scrollPercent < 100 ? scrollPercent * 5 : 350,
-                    transition: "transform 1.5s, top .5s ease"
-                })
-
-                setCorner({ borderRadius: `${radius}px ${radius}px 0 0` })
-            }
-        }
 
 
-        window.addEventListener("scroll", scrolling)
+        //     } else { scale = 50 }
+
+        //     if (scrollPercent != undefined) {
+        //         setAddStyle({
+        //             transform: `scale(${scale}%, ${scale}%)`,
+        //             opacity: opacity,
+        //             top: scrollPercent < 100 ? scrollPercent * 5 : 350,
+        //             transition: "transform 1.5s, top .5s ease"
+        //         })
+
+        //         setCorner({ borderRadius: `${radius}px ${radius}px 0 0` })
+        //     }
+        // }
+
+
+        // window.addEventListener("scroll", scrolling)
     }, [])
 
     return (
         <div
             id='waveslider'
             style={{
-                ...addStyle,
+                // ...addStyle,
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-end',
@@ -95,6 +91,7 @@ export default function Slider({ banner }) {
                 autoplay arrows dots={false} draggable speed={3000}
                 prevArrow={<LeftOutlined />}
                 nextArrow={<RightOutlined />}
+                
             >
                 {
                     banner.map((item, index) => (
@@ -124,17 +121,17 @@ export default function Slider({ banner }) {
                                     ...corner
                                 }}
                                 />
-                                {!isMobile&&
-                                <Row style={{ width: '100%', position: 'absolute', padding: "10%" }}>
-                                    <Col span={24} style={{}}>
-                                        <div style={{ textAlign: isMobile ? 'center' : null }}>
-                                            <h1 style={{ color: 'white', fontSize: isMobile ? "2.5rem" : "4rem", fontWeight: 900 }}>{item.heading}</h1>
-                                            <p style={{ color: 'white', fontSize: isMobile ? "1.5rem" : "2.5em", fontWeight: 600, fontStyle: 'italic', marginBottom: 30 }}>{item.subHeading}</p>
-                                            <Link target='blank' style={{ background: style.primaryColor, padding: "10px 20px", borderRadius: 50, color: 'white', fontWeight: 700 }} href={"/contact-us"}>Contact Us</Link>
-                                        </div>
+                                
+                                    <Row style={{ width: '100%', position: 'absolute', padding: "10%" }}>
+                                        <Col span={24} style={{}}>
+                                            <div style={{ textAlign: isMobile ? 'center' : null }}>
+                                                <h1 style={{ color: 'white', fontSize: isMobile ? "2.5rem" : "4rem", fontWeight: 900 }}>{item.heading}</h1>
+                                                <p style={{ color: 'white', fontSize: isMobile ? "1.5rem" : "2.5em", fontWeight: 600, fontStyle: 'italic', marginBottom: 30 }}>{item.subHeading}</p>
+                                                <Link target='blank' style={{ background: style.primaryColor, padding: "10px 20px", borderRadius: 50, color: 'white', fontWeight: 700 }} href={"/contact-us"}>Contact Us</Link>
+                                            </div>
 
-                                    </Col>
-                                </Row>}
+                                        </Col>
+                                    </Row>
 
                             </div>
                         </div>

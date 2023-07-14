@@ -17,7 +17,7 @@ export default function Authorities() {
                 data-aos-anchor-placement="top-bottom"
                 data-aos="fade-up"
                 data-aos-duration="2000"
-                id='cardImage' style={{ width: 270, height: service ? "auto" : 250, background: 'rgba(255,255,255, 0.7)', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: 10 }}>
+                id='cardImage' style={{ width: isMobile&&!service?160: 270, height: service ? "auto" : 250, background: 'rgba(255,255,255, 0.7)', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: 10 }}>
                 <div style={{ width: 120, height: 120, borderRadius: 100, boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.1)', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, background: 'white' }}>
                     <img src={imgUrl} alt={image} style={{ height: service ? 50 : "auto" }} />
                 </div>
@@ -39,14 +39,14 @@ export default function Authorities() {
             overflowY: 'hidden'
         }}
         >
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Title red={"Accredited"} blue={" By"} />
+            <div style={{ display: 'flex', justifyContent: 'center', width:'100%'}}>
+                <Title red={"Accredited"} blue={" By"} center/>
             </div>
             
 
             <div style={{
                 display: "flex",
-                gridGap: 30,
+                gridGap: isMobile?20:30,
                 padding: '0 0 2% 0',
                 marginTop: isMobile ? '5%' : null,
                 flexWrap: 'wrap',
@@ -64,7 +64,7 @@ export default function Authorities() {
                 />
                 <Element
                     image={"emerald.png"}
-                    content={"Gold Category Tour Operator Awarded by Dept. of Tourism, A&N Administration."}
+                    content={"Awarded by Dept. of Tourism, A&N Administration."}
                 />
                 <Element
                     image={"l EXPERTS.jpg"}
@@ -93,7 +93,7 @@ export default function Authorities() {
             }}
             >
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Title red={"Awesome"} blue={" Service"} />
+                    <Title red={"Awesome"} blue={" Service"} center/>
                 </div>
 
                 <div style={{

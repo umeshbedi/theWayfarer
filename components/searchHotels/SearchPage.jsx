@@ -69,7 +69,7 @@ export default function SearchPage({ query }) {
 
             {/* Left side container */}
             <div style={{ width: isMobile ? '0%' : '25%', padding: isMobile ? 0 : 15, visibility: isMobile ? 'hidden' : 'visible'}}>
-                <div style={{ backgroundColor: 'white', padding: 15, borderRadius: 30, boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.07)', position:'sticky', top:'17%'}}>
+                <div style={{ backgroundColor: 'white', padding: 15, borderRadius: 30, boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.07)', top:'1%'}}>
                     <h2>FILTERS</h2>
                     <Divider style={{}} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -97,9 +97,9 @@ export default function SearchPage({ query }) {
                 ))
 
                 } */}
-                   <SingleHotel/>
-                   <SingleHotel/>
-                   <SingleHotel/>
+                   <SingleHotel tag={"Exclusive"} tagColor={"red"}/>
+                   <SingleHotel tag={"Most Booked"} tagColor={'green'}/>
+                   <SingleHotel tag={'Deluxe'} tagColor='#4169E1'/>
                    <SingleHotel/>
             </div>
         </div>

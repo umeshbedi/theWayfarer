@@ -23,7 +23,7 @@
   padding: 0;
   margin: 0;
   font-family: 'Red Hat Display', sans-serif;
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
  
 }
 
@@ -120,7 +120,7 @@ a {
   width: 60% !important;
   @media (max-width:991px) {
     width: 100% !important;
-    height: 75vh !important;
+    height: 70vh !important;
     margin-top: 0vh !important;
   }
   .paragraph{
@@ -169,3 +169,12 @@ a {
   transform: scale(1.04);
 }
 
+@media (min-width:991px) {
+  .counterDiv::before{
+    position: absolute;
+    bottom: -47;
+    left: auto;
+    right: 0;
+    content: url(/images/counter-banner.png);
+  }
+}

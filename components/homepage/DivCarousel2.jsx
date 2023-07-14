@@ -69,19 +69,19 @@ export default function DivCarousel({ lightHead, darkHead, backgroundImage, slid
                         ref={slideRef}
                         // effect={"coverflow"}
                         grabCursor={true}
-                        navigation={true}
+                        navigation={isMobile?false:true}
                         modules={[Pagination, Navigation]}
                         // centeredSlides={center}
                         slidesPerView={isMobile?2:3}
                         spaceBetween={isMobile?10:30}
                         loop={true}
-                        onSlidesLengthChange={(e)=>{console.log(e)}}
+                        
                        
                     >
                         {sliderImages.map((item, index) => (
                             <SwiperSlide 
                             className='singleSwiper'
-                            style={{ width: isMobile?"100%":"30%", height: isMobile?"75vh":460, transition:"width 1s ease",  }} key={index}>
+                            style={{ width: isMobile?"100%":"30%", height: isMobile?"70vh":460, transition:"width 1s ease",  }} key={index}>
                                 <div style={{ height: 460 }}>
                                     <Image src={item.thumbnail} alt={item.name} fill style={{ objectFit: 'cover', borderRadius: 50, position: 'absolute', zIndex: -1 }} />
                                     <div style={{position:'absolute',bottom:0, background:"linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)", width:'100%', borderRadius:"0 0 50px 50px", padding:40}}>

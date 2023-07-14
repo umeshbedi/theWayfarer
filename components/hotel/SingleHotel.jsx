@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 
-export default function SingleHotel({ hotelData }) {
+export default function SingleHotel({ hotelData, tag, tagColor=style.primaryColor }) {
     const [isMobile, setIsMobile] = useState(false)
     const [imageWidth, setImageWidth] = useState(null)
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function SingleHotel({ hotelData }) {
         var box = document.querySelector('.hotelContent')
         var width = box.clientWidth
         setImageWidth(width)
-        
+
     }, [isMobile])
     const [images, setImages] = useState([])
     // const hotel = hotelData.hotel
@@ -32,14 +32,31 @@ export default function SingleHotel({ hotelData }) {
         //     setImages(imageData.slice(0, 4))
         // }, 1000)
     }, [])
-    
-    
+
+
     return (
         <div
             data-aos="fade-up"
             data-aos-anchor-placement="top-bottom"
             data-aos-duration="2000"
         >
+            {tag !== undefined &&
+                <div
+                    style={{
+                        position: 'absolute',
+                        backgroundColor: tagColor,
+                        zIndex: 1,
+                        padding: "10px 20px",
+                        color: 'white',
+                        borderTopLeftRadius: 30,
+                        borderBottomRightRadius: 30,
+                        top: -10,
+                        boxShadow: '5px 5px 5px 0 rgba(0, 0, 0, .1)'
+                    }}
+                >
+                    <p>{tag}</p>
+                </div>
+            }
             <div
                 style={{
                     backgroundColor: 'white',
@@ -51,27 +68,11 @@ export default function SingleHotel({ hotelData }) {
                 }}
             >
 
+
                 {/* Image container */}
                 <div style={{ width: isMobile ? '100%' : '50%' }}>
-                    <div
-                        style={{
-                            position: 'absolute',
-                            backgroundColor: style.primaryColor,
-                            zIndex: 1,
-                            padding: "5px 20px",
-                            color: 'white',
-                            borderTopLeftRadius:30,
-                            borderBottomRightRadius:30
-                        }}
-                    >
-                        <p>
-                            {/* {(100 - ((hotel.primary_price * 100) / hotel.primary_price_offer)).toFixed(0)} */}
-                            20% Off
-                        </p>
-                    </div>
-                    
-                    <div style={{width:isMobile?imageWidth:"100%", height:isMobile?imageWidth:"100%", position:'relative'}}>
-                        <Image src={"/images/samplehotel.jpg"} fill style={{objectFit:"cover", borderRadius:30}}/>
+                    <div style={{ width: isMobile ? imageWidth : "100%", height: isMobile ? imageWidth : "100%", position: 'relative' }}>
+                        <Image src={"/images/samplehotel.jpg"} fill style={{ objectFit: "cover", borderRadius: 30 }} />
                     </div>
                     {/* <ImageGallery 
                         items={images.length==0 ?
@@ -88,14 +89,14 @@ export default function SingleHotel({ hotelData }) {
                 </div>
 
                 {/* Hotels Details container */}
-                <div 
-                className='hotelContent'
-                style={{ marginLeft: isMobile ? 0 : 20, marginTop: isMobile ? 15 : 0, display: 'flex', flexDirection: 'column', gap: 15 }}>
+                <div
+                    className='hotelContent'
+                    style={{ marginLeft: isMobile ? 0 : 20, marginTop: isMobile ? 15 : 0, display: 'flex', flexDirection: 'column', gap: 15 }}>
                     <h1>Dedeman Konforu</h1>
                     <p>1 Night - 1 Adult</p>
                     <Rate style={{ fontSize: 14 }} disabled allowHalf defaultValue={4.5} />
                     <p>{"Dedeman Hotels & Resorts International 50 yılı aşkın kazandığı deneyimini dünyanın her yerinden ağırladığı misafirleriyle paylaşmaya devam ediyor."}...(<Link target='blank' style={{ color: style.primaryColor }} href={"#"}>more</Link>)</p>
-                    <h1><span style={{ fontSize: 16, textDecoration: 'line-through', marginRight: 5 }}>₹10000</span>₹8000/<span style={{ fontSize: 16 }}>per night</span></h1>
+                    {/* <h1><span style={{ fontSize: 16, textDecoration: 'line-through', marginRight: 5 }}>₹10000</span>₹8000/<span style={{ fontSize: 16 }}>per night</span></h1> */}
                     <div>
                         <Button type='primary' style={{ borderRadius: 50 }} size='large' onClick={() => window.open("#", "_blank")} >Book Hotel</Button>
                     </div>

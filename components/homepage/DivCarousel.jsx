@@ -13,6 +13,7 @@ import { sliderImages } from '../localdb';
 import Image from 'next/image';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { mobile } from '../variables';
+import MyButton from '../utils/MyButton';
 
 
 
@@ -80,35 +81,19 @@ export default function DivCarousel2({ lightHead, darkHead, backgroundImage, sli
               style={{ color: 'white', fontWeight: 900, fontSize: isMobile ? "2.2rem" : "3.2rem", lineHeight: 1.1, marginBottom: isMobile ? 25 : 40 }}>
               {lightHead} <span style={{ color: 'white' }}>{darkHead}</span>
             </h1>
-
-            <Link
-              data-aos="fade-up"
-              data-aos-duration="2000"
-              target='blank'
-              onMouseOver={() => setButtonFocus(true)}
-              onMouseOut={() => setButtonFocus(false)}
-              style={{
-                background: style.primaryColor,
-                padding: "10px 20px",
-                borderRadius: 50,
-                color: 'white',
-                fontWeight: 700,
-                cursor: 'pointer',
-
-              }}
-              href={button.slug}>
-              {button.name} {buttonFocus ? <ArrowRightOutlined /> : null}
-            </Link>
+            <div style={{width:'fit-content'}}>
+              <MyButton name={button.name} slug={button.slug} />
+            </div>
           </div>
         </div>
 
         {/* for carousel */}
         <div
           style={sliderStyle}
-          
+
         >
           <Swiper
-            style={{ padding: isMobile ? "3rem 0 1.5rem 10px" : "2.5rem 0", "--swiper-navigation-color": "#fff", transition: ".5s" }}
+            style={{ padding: isMobile ? "3rem 0 1.5rem 10px" : "2.5rem 0", "--swiper-navigation-color": "#fff", transition: "ease-out" }}
             ref={slideRef}
             effect={"coverflow"}
             grabCursor={true}
@@ -117,6 +102,7 @@ export default function DivCarousel2({ lightHead, darkHead, backgroundImage, sli
             centeredSlides={isMobile ? false : center}
             slidesPerView={isMobile ? 2.1 : slides}
             spaceBetween={isMobile ? 10 : 30}
+            speed={1500}
             onSlideChange={(e) => {
               if (e.activeIndex > 0) {
                 setcenter(false)

@@ -23,11 +23,12 @@ export default function Footer() {
   return (
     <div
       style={{
-        height: 400,
+        // height: 400,
         backgroundColor: `${style.primaryColor}`,
         display: 'flex',
         flexDirection: 'column',
-        gap: "1rem"
+        gap: "1rem",
+        paddingBottom:50
       }}
     >
 
@@ -46,7 +47,7 @@ export default function Footer() {
       </div>
       
       
-      <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginTop: '2rem' }}>
+      <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginTop: '2rem', textAlign:'center', padding:'0 10%' }}>
         <a style={{ fontSize: "1rem", fontWeight: 500, color: 'white' }}>Copyright ©️ 2023 theWayfarer. All Rights Reserved TGA</a>
         
       </div>

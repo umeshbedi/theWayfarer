@@ -364,7 +364,8 @@ export default function Header({ }) {
     <div style={{
       padding: '1% 5% .5% 5%',
       backgroundColor: style.primaryColor,
-
+      width:"100%",
+      
     }}
       id='menuDiv'
     >

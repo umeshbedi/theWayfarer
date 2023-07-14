@@ -13,6 +13,7 @@ import { sliderImages } from '../localdb';
 import Image from 'next/image';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { mobile } from '../variables';
+import MyButton from '../utils/MyButton';
 
 
 
@@ -48,7 +49,7 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
         backgroundRepeat: 'no-repeat',
         float: 'right',
         position: 'relative',
-        marginBottom:"3.5rem"
+        marginBottom:isMobile?'2.5rem':"3.5rem"
       }}
     >
         <div
@@ -62,7 +63,7 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
           }}
         >
 
-          <div>
+          <div style={{zIndex:2}}>
 
             <h1 
             data-aos="fade-up"
@@ -71,24 +72,13 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
               {lightHead} <span style={{ color: 'grey' }}>{darkHead}</span>
             </h1>
 
-            <Link target='blank'
+            <div 
             data-aos="fade-up"
             data-aos-duration="2000"
-              onMouseOver={() => setButtonFocus(true)}
-              onMouseOut={() => setButtonFocus(false)}
-              style={{
-                background: style.primaryColor,
-                padding: "10px 20px",
-                borderRadius: 50,
-                color: 'white',
-                fontWeight: 700,
-                marginTop: 20,
-                cursor: 'pointer',
-
-              }}
-              href={button.slug}>
-              {button.name} {buttonFocus ? <ArrowRightOutlined /> : null}
-            </Link>
+            style={{width:'fit-content'}}>
+              <MyButton name={button.name} slug={button.slug} />
+            </div>
+            
           </div>
         </div>
 
@@ -101,15 +91,16 @@ export default function Package({lightHead, darkHead, backgroundImage, sliderCon
 
         >
           <Swiper
-            style={{ padding: "2.5rem 10px",  "--swiper-navigation-color": "#fff", }}
+            style={{ padding: `${isMobile?.5:2.5}rem 10px`,  "--swiper-navigation-color": "#fff",transition:'ease-out' }}
             ref={slideRef}
             effect={"coverflow"}
             grabCursor={true}
-            navigation={true}
+            navigation={isMobile?false:true}
             modules={[Pagination, Navigation]}
             slidesPerView={"auto"}
             spaceBetween={isMobile?10:30}
             rewind
+            speed={1500}
             
           >
             {sliderImages.map((item, index) => (
