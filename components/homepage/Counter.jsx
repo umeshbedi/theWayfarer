@@ -50,7 +50,7 @@ export default function Counter() {
                     <span style={{ fontWeight: 900, color: style.primaryColor }}><br />The WayFarer</span>
                 </h1>
                 <br />
-                <p style={{ fontSize: "1.2rem", fontWeight: 400, fontStyle: 'italic' }}>Explore Andaman tour & travel packages at best prices on discoverandaman.in. Find all tourist places in Andaman with best deals and offers. Get custom-designed Andaman holiday packages with us. Book Now!</p>
+                <p style={{ fontSize: "1.2rem", fontWeight: 400, fontStyle: 'italic' }}>Explore Andaman tour & travel packages at best prices on theWaryFarer. Find all tourist places in Andaman with best deals and offers. Get custom-designed Andaman holiday packages with us. Book Now!</p>
                 <br />
                 <div style={{ width: 'fit-content' }}><MyButton name={"Know More"} slug={"/about-us"} /></div>
                 <br />
