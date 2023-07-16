@@ -24,7 +24,7 @@ const Butter = ({ wrapperId, children }) => {
 
   const defaults = {
     wrapperDamper: damper,
-    cancelOnTouch: false
+    cancelOnTouch: true
   };
   
   useEffect(() => {

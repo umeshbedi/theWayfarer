@@ -45,7 +45,7 @@ export default function Counter() {
                 marginBottom:!isMobile?320:null
             }}
         >
-            <div style={{ marginLeft: isMobile ? "5%" : '50%', paddingRight: "5%" }}>
+            <div style={{ marginLeft: isMobile ? "5%" : '50%', paddingRight: "5%", zIndex:2 }}>
                 <h1 style={{ fontWeight: 600, fontSize: "2.5rem" }}>Discover with the leader of andaman tourism. We are
                     <span style={{ fontWeight: 900, color: style.primaryColor }}><br />The WayFarer</span>
                 </h1>
